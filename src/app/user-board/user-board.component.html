@@ -1,0 +1,466 @@
+<body>
+<div class="container-fluid" id="gloal"> 
+<div id="loader" *ngIf="loading"></div>
+
+
+<div class="col col-md-3">			
+  <div class="panel-group" id="accordion">
+   
+    
+    <div class="panel panel-default"*ngIf="decfiscmenss.length>0&&usertype=='Client'">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+      <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+      declarations fiscales</a>
+      </h4>
+    </div>
+    <div id="collapse2" class="panel-collapse collapse">
+      <ul class="list-group">
+        <li class="list-group-item"(click)="click7()"><span class="badge">{{decfiscmensnumber}}</span>Liste des déclarations</li>
+      </ul>
+    </div>
+    </div>
+    <div class="panel panel-default"*ngIf="deccomptabilites.length>0&&usertype=='Client'">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+        Fichiers comptables</a>
+        </h4>
+      </div>
+      <div id="collapse3" class="panel-collapse collapse">
+        <ul class="list-group">
+          <li class="list-group-item"(click)="click6()"><span class="badge">{{deccomptabilitenumber}}</span>Liste des fichiers comptables</li>
+        </ul>
+      </div>
+    </div>
+    <div class="panel panel-default"*ngIf="condidates.length>0&&usertype=='Candidat'">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+        Liste des Candidatures</a>
+        </h4>
+      </div>
+      <div id="collapse4" class="panel-collapse collapse">
+        <ul class="list-group">
+          <li class="list-group-item"(click)="click11()"><span class="badge">{{condval}}</span>Clôture</li>
+          <li class="list-group-item"(click)="click12()"><span class="badge">{{condnonal}}</span>En cours d'execution</li>
+        </ul>
+      </div>
+      </div>
+      <div class="panel panel-default"*ngIf="contacts.length>0"> 
+        <div class="panel-heading">
+          <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+          Liste des réclamations</a>
+          </h4>
+        </div>
+        <div id="collapse5" class="panel-collapse collapse">
+          <ul class="list-group">
+            <li class="list-group-item"(click)="click13()"><span class="badge">{{contval}}</span>Clôture</li>
+            <li class="list-group-item"(click)="click14()"><span class="badge">{{contnonval}}</span>En cours d'execution</li>
+          </ul>
+        </div>
+        </div>
+  </div> 
+</div>
+<div class="col col-md-9"id="tabcontainer">
+  <mat-tab-group (selectedTabChange)="onTabClick($event)">
+    <mat-tab label="liste des déclarations fiscales" *ngIf="decfiscmenswindow&&decfiscmenss">
+      <ng-template mat-tab-label style="padding: 3px;">
+        <div class="col" style="margin-left: 20px;">liste des déclarations fiscales</div>
+        <span (click)="click32()"><i class="glyphicon glyphicon-remove"></i></span>
+    </ng-template>
+    <div class="col-lg-12" *ngIf="!loading">
+      <div class="team-member" *ngIf="usertype=='Client'">
+        <div class="users-grid" style="overflow-x:auto;"> 
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th scope="col">Code <i class="fa fa-sort" aria-hidden="true" [appSort]="decfiscmenss" data-order="desc" data-name="_id" ></i></th>
+              <th scope="col">Nature <i class="fa fa-sort" aria-hidden="true" [appSort]="decfiscmenss" data-order="desc" data-name="nature"  ></i></th>
+              <th scope="col">Mois <i class="fa fa-sort" aria-hidden="true" [appSort]="decfiscmenss" data-order="desc" data-name="mois"  ></i></th>
+              <th scope="col">Année <i class="fa fa-sort" aria-hidden="true" [appSort]="decfiscmenss" data-order="desc" data-name="annee" ></i></th>
+              <th scope="col">Prenom <i class="fa fa-sort" aria-hidden="true" [appSort]="decfiscmenss" data-order="desc" data-name="userId"  ></i></th>
+              <th scope="col">Nom <i class="fa fa-sort" aria-hidden="true" [appSort]="decfiscmenss" data-order="desc" data-name="userId" ></i></th>
+              <th scope="col">Origine</th>
+              <th scope="col">Statut <i class="fa fa-sort" aria-hidden="true" [appSort]="decfiscmenss" data-order="desc" data-name="statut" ></i></th>
+              <th scope="col">Date de création <i class="fa fa-sort" aria-hidden="true" [appSort]="decfiscmenss" data-order="desc" data-name="created" ></i></th>  
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let decfiscmens of decfiscmenss; let i = index">
+        
+              
+              <td>{{decfiscmens._id}}</td>
+              <td>{{decfiscmens.nature}}</td>
+              <td>{{decfiscmens.mois}}</td>
+              <td>{{decfiscmens.annee}}</td>
+              <td>{{prenom}}</td>
+              <td>{{nom}}</td>
+              <td>{{decfiscmens.origine}}</td>
+              <td>
+                <span *ngIf="decfiscmens.statutadmin.length>0">
+                  <ng-container *ngFor="let statut of decfiscmens.statutadmin; let j = index">
+                    <td  *ngIf="j==decfiscmens.statutadmin.length-1"style="display: block;">{{statut.statut}}</td>
+                  </ng-container>
+                </span>  
+              </td>
+              <td>{{decfiscmens.created | customDate}}</td>
+              <td>
+                <span *ngIf="decfiscmens.statutadmin.length>0">
+                  <ng-container *ngIf="decfiscmens.statutadmin[decfiscmens.statutadmin.length-1].statut=='clôturé'&&decfiscmens.affecte">
+                    <button type="button" class="btn btn-success" (click)="getNavigation('view-decfiscmens',decfiscmens._id)">Consulter</button>
+                  </ng-container>
+                </span>   
+                
+              </td>
+<td *ngIf="decfiscmens.origine!='généré automatiquement'"> <button type="button" class="btn btn-primary" (click)="getNavigation('modify-decfiscmens',decfiscmens._id)">Modifier/Compléter</button></td>
+            
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        
+      </div>
+    </div>
+    </mat-tab>
+    <mat-tab label="liste des fichiers comptables" *ngIf="deccomptabilitewindow&&deccomptabilites">
+      <ng-template mat-tab-label style="padding: 3px;">
+        <div class="col" style="margin-left: 20px;">liste des fichiers comptables</div>
+        <span (click)="click33()"><i class="glyphicon glyphicon-remove"></i></span>
+    </ng-template>
+    <div class="col-lg-12" *ngIf="!loading">
+      <div class="team-member" *ngIf="usertype=='Client'">
+        <div class="users-grid" style="overflow-x:auto;"> 
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th scope="col">Code <i class="fa fa-sort" aria-hidden="true" [appSort]="decfiscmenss" data-order="desc" data-name="_id" ></i></th>
+              <th scope="col">Nature <i class="fa fa-sort" aria-hidden="true" [appSort]="decfiscmenss" data-order="desc" data-name="nature"  ></i></th>
+              <th scope="col">Mois <i class="fa fa-sort" aria-hidden="true" [appSort]="decfiscmenss" data-order="desc" data-name="mois"  ></i></th>
+              <th scope="col">Année <i class="fa fa-sort" aria-hidden="true" [appSort]="decfiscmenss" data-order="desc" data-name="annee" ></i></th>
+              <th scope="col">Prenom <i class="fa fa-sort" aria-hidden="true" [appSort]="decfiscmenss" data-order="desc" data-name="userId"  ></i></th>
+              <th scope="col">Nom <i class="fa fa-sort" aria-hidden="true" [appSort]="decfiscmenss" data-order="desc" data-name="userId" ></i></th>
+              <th scope="col">Statut <i class="fa fa-sort" aria-hidden="true" [appSort]="decfiscmenss" data-order="desc" data-name="statut" ></i></th>
+              <th scope="col">Date de création <i class="fa fa-sort" aria-hidden="true" [appSort]="decfiscmenss" data-order="desc" data-name="created" ></i></th>  
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let deccomptabilite of deccomptabilites; let i = index">
+        
+              
+              <td>{{deccomptabilite._id}}</td>
+              <td>{{deccomptabilite.nature}}</td>
+              <td>{{deccomptabilite.mois}}</td>
+              <td>{{deccomptabilite.annee}}</td>
+              <td>{{prenom}}</td>
+              <td>{{nom}}</td>
+              <td>
+                <span *ngIf="deccomptabilite.statutadmin.length>0">
+                  <ng-container *ngFor="let statut of deccomptabilite.statutadmin; let j = index">
+                    <td  *ngIf="j==deccomptabilite.statutadmin.length-1"style="display: block;">{{statut.statut}}</td>
+                  </ng-container>
+                </span>  
+              </td>
+              <td>{{deccomptabilite.created | customDate}}</td>
+              <td>
+                <span *ngIf="deccomptabilite.statutadmin.length>0">
+                  <ng-container *ngIf="deccomptabilite.statutadmin[deccomptabilite.statutadmin.length-1].statut=='clôturé'&&deccomptabilite.affecte">
+                    <button type="button" class="btn btn-success" (click)="getNavigation('view-deccomptabilite',deccomptabilite._id)">Consulter</button>
+                  </ng-container>
+                </span>   
+                
+              </td>
+              <td>  <button type="button" class="btn btn-primary" (click)="getNavigation('modify-deccomptabilite',deccomptabilite._id)">Modifier/Compléter</button></td>
+            
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        
+      </div>
+    </div>
+    </mat-tab>
+    <mat-tab label="liste des Candidatures clôturés" *ngIf="candidaturevalide&&condidates">
+      <ng-template mat-tab-label style="padding: 3px;">
+        <div class="col" style="margin-left: 20px;">liste des Candidatures clôturés</div>
+        <span (click)="click25()"><i class="glyphicon glyphicon-remove"></i></span>
+    </ng-template>
+    <div class="col-lg-12" *ngIf="!loading">
+      <div class="team-member" *ngIf="usertype=='Candidat'">
+        <h2>Liste des Candidatures clôturés</h2>
+        <hr>        
+        <div class="users-grid" style="overflow-x:auto;">
+  
+          
+          
+          <table class="table table-striped">
+            <thead>
+            <tr>
+        
+              
+              <th>Email <i class="fa fa-sort" aria-hidden="true" [appSort]="condidates" data-order="desc" data-name="email" ></i></th>
+                      <th>Prenom <i class="fa fa-sort" aria-hidden="true" [appSort]="condidates" data-order="desc" data-name="firstname" ></i></th>
+                      <th>Nom <i class="fa fa-sort" aria-hidden="true" [appSort]="condidates" data-order="desc" data-name="lastname" ></i></th>
+                      <th>Adresse <i class="fa fa-sort" aria-hidden="true" [appSort]="condidates" data-order="desc" data-name="adresse" ></i></th>
+                      <th>Mobile <i class="fa fa-sort" aria-hidden="true" [appSort]="condidates" data-order="desc" data-name="mobile" ></i></th>
+                      <th scope="col">Statut Admin</th>
+                      <th scope="col">Statut Collaborateur</th>
+                      <th>CV</th>
+                      <th>Date de creation <i class="fa fa-sort" aria-hidden="true" [appSort]="condidates" data-order="desc" data-name="created" ></i></th>
+              
+              
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let condidate of getcondidatevalide()">
+        
+              
+              <td>{{condidate.email}}</td>
+                      <td>{{condidate.firstname}}</td>
+                      
+                
+                      <td>{{condidate.lastname}}</td>
+                      <td>{{condidate.adresse}}</td>
+                      <td>{{condidate.mobile}}</td>
+                      <td>
+                        <span *ngIf="condidate.statutadmin">
+                          <ng-container *ngFor="let statut of condidate.statutadmin">
+                            <td  style="display: block;">{{statut.statut}}</td>
+                          </ng-container>
+                        </span>  
+                      </td>
+                      <td>
+                        <span *ngIf="condidate.statutcollab">
+                          <ng-container *ngFor="let statut of condidate.statutcollab">
+                            {{statut.statutcoll}}
+                          </ng-container>
+                        </span>     
+                      </td>                      
+                      <td><a href="{{condidate.ficheUrl}}" target="_blank">Aperçu CV</a></td>
+                      <td>{{condidate.created}}</td>
+
+                      
+                      <td>  <button type="button" class="btn btn-success" (click)="getNavigationcondidates('view-condidate',condidate._id)">Consulter</button></td>
+              
+            
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        
+      </div>
+    </div>
+    </mat-tab>
+    <mat-tab label="liste des Candidatures" *ngIf="candidaturenonvalide&&condidates">
+      <ng-template mat-tab-label style="padding: 3px;">
+        <div class="col" style="margin-left: 20px;">liste des Candidatures en cours de traitement</div>
+        <span (click)="click26()"><i class="glyphicon glyphicon-remove"></i></span>
+    </ng-template>
+    <div class="col-lg-12" *ngIf="!loading">
+      <div class="team-member" *ngIf="usertype=='Candidat'">
+        <h2>Liste des Candidatures en cours de traitement</h2>
+        <hr>        
+        <div class="users-grid" style="overflow-x:auto;">
+  
+          
+          
+          <table class="table table-striped">
+            <thead>
+            <tr>
+        
+              
+              <th>Email <i class="fa fa-sort" aria-hidden="true" [appSort]="condidates" data-order="desc" data-name="email" ></i></th>
+                      <th>Prenom <i class="fa fa-sort" aria-hidden="true" [appSort]="condidates" data-order="desc" data-name="firstname" ></i></th>
+                      <th>Nom <i class="fa fa-sort" aria-hidden="true" [appSort]="condidates" data-order="desc" data-name="lastname" ></i></th>
+                      <th>Adresse <i class="fa fa-sort" aria-hidden="true" [appSort]="condidates" data-order="desc" data-name="adresse" ></i></th>
+                      <th>Mobile <i class="fa fa-sort" aria-hidden="true" [appSort]="condidates" data-order="desc" data-name="mobile" ></i></th>
+                      <th scope="col">Statut Admin</th>
+                      <th scope="col">Statut Collaborateur</th>
+                      <th>CV</th>
+                      <th>Date de creation <i class="fa fa-sort" aria-hidden="true" [appSort]="condidates" data-order="desc" data-name="created" ></i></th>
+              
+              
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let condidate of getcondidatenonvalide()">
+        
+              
+              <td>{{condidate.email}}</td>
+              <td>{{condidate.firstname}}</td>
+              
+        
+              <td>{{condidate.lastname}}</td>
+              <td>{{condidate.adresse}}</td>
+              <td>{{condidate.mobile}}</td>
+              <td>
+                <span *ngIf="condidate.statutadmin">
+                  <ng-container *ngFor="let statut of condidate.statutadmin">
+                    <td  style="display: block;">{{statut.statut}}</td>
+                  </ng-container>
+                </span>  
+              </td>
+              <td>
+                <span *ngIf="condidate.statutcollab">
+                  <ng-container *ngFor="let statut of condidate.statutcollab">
+                    {{statut.statutcoll}}
+                  </ng-container>
+                </span>     
+              </td>                      
+              <td><a href="{{condidate.ficheUrl}}" target="_blank">Aperçu CV</a></td>
+              <td>{{condidate.created}}</td>
+
+              
+              <td>  <button type="button" class="btn btn-success" (click)="getNavigationcondidates('view-condidate',condidate._id)">Consulter</button></td>
+              
+            
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        
+      </div>
+    </div>
+    </mat-tab>
+    <mat-tab label="liste des réclamations" *ngIf="reclamationtraite&&contacts">
+      <ng-template mat-tab-label style="padding: 3px;">
+        <div class="col" style="margin-left: 20px;">liste des réclamations traités</div>
+        <span (click)="click27()"><i class="glyphicon glyphicon-remove"></i></span>
+    </ng-template>
+    <div class="col-lg-12" *ngIf="!loading">
+      <div class="team-member">
+        <h2>Liste des réclamations traités</h2>
+        <hr>        
+        <div class="users-grid" style="overflow-x:auto;">
+  
+          
+          
+          <table class="table table-striped">
+            <thead>
+            <tr>
+        
+              
+              <th>Date Creation <i class="fa fa-sort" aria-hidden="true" [appSort]="contacts" data-order="desc" data-name="created" ></i></th>
+                      <th>Email <i class="fa fa-sort" aria-hidden="true" [appSort]="contacts" data-order="desc" data-name="email" ></i></th>
+                      <th>Prenom <i class="fa fa-sort" aria-hidden="true" [appSort]="contacts" data-order="desc" data-name="firstname" ></i></th>
+                      <th>Nom <i class="fa fa-sort" aria-hidden="true" [appSort]="contacts" data-order="desc" data-name="lastname" ></i></th>
+                      <th>Fichier Joint</th>
+                      <th>Mobile <i class="fa fa-sort" aria-hidden="true" [appSort]="contacts" data-order="desc" data-name="mobile" ></i></th>
+                      <th>Description <i class="fa fa-sort" aria-hidden="true" [appSort]="contacts" data-order="desc" data-name="description" ></i></th>
+                      <th scope="col">Statut Admin</th>
+                      <th scope="col">Statut Collaborateur</th>
+              
+              
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let contact of getcontactvalide()">
+        
+              
+              <td>{{contact.created}}</td>
+                      <td>{{contact.email}}</td>
+                      <td>{{contact.firstname}}</td>
+                      
+                
+                      <td>{{contact.lastname}}</td>
+                      <td><a href="{{contact.ficheUrl}}" target="_blank">Aperçu Fichier</a></td>
+                      <td>{{contact.mobile}}</td>
+                      <td>{{contact.description}}</td>
+                      <td>
+                        <span *ngIf="contact.statutadmin">
+                          <ng-container *ngFor="let statut of contact.statutadmin">
+                            <td  style="display: block;">{{statut.statut}}</td>
+                          </ng-container>
+                        </span>  
+                      </td>
+                      <td>
+                        <span *ngIf="contact.statutcollab">
+                          <ng-container *ngFor="let statut of contact.statutcollab">
+                            {{statut.statutcoll}}
+                          </ng-container>
+                        </span>     
+                      </td>
+                      <td>  <button type="button" class="btn btn-success" (click)="getNavigationcontacts('view-contactreq',contact._id)">Consulter</button></td>
+              
+            
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        
+      </div>
+    </div>
+    </mat-tab>
+    <mat-tab label="liste des réclamations en cours" *ngIf="reclamationnontraite&&contacts">
+      <ng-template mat-tab-label style="padding: 3px;">
+        <div class="col" style="margin-left: 20px;">liste des réclamations en cours de traitement</div>
+        <span (click)="click28()"><i class="glyphicon glyphicon-remove"></i></span>
+    </ng-template>
+    <div class="col-lg-12" *ngIf="!loading">
+      <div class="team-member" >
+        <h2>Liste des réclamations en cours</h2>
+        <hr>        
+        <div class="users-grid" style="overflow-x:auto;">
+  
+          
+          
+          <table class="table table-striped">
+            <thead>
+            <tr>
+        
+              
+              <th>Email</th>
+              <th>Prenom</th>
+              <th>Nom</th>
+              <th>Adresse</th>
+              <th>Mobile</th>
+              <th>Decision</th>
+              <th>CV</th>
+              
+              
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let contact of getcontactnonvalide()">
+        
+              
+              <td>{{contact.email}}</td>
+              <td>{{contact.firstname}}</td>
+              
+        
+              <td>{{contact.lastname}}</td>
+              <td>{{contact.adresse}}</td>
+              <td>{{contact.mobile}}</td>
+              <td>{{contact.decision}}</td>
+              <td><a href="{{contact.ficheUrl}}" target="_blank">Aperçu CV</a></td>
+              
+              
+              
+              <td>  <button type="button" class="btn btn-success" (click)="getNavigation('view-contact',contact._id)">Consulter</button></td>
+              
+            
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        
+      </div>
+    </div>
+    </mat-tab>
+    
+    </mat-tab-group>
+    </div>
+
+
+
+
+
+
+
+
+
+  
+  
+</div>    
+</body>

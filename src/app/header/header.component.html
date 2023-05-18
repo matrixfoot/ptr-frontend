@@ -1,0 +1,67 @@
+
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid" style="padding:10px">
+        <div class="navbar-header">
+          <a class="navbar-brand" routerLink="home" routerLinkActive="active"></a>
+        </div>
+        <div id="titre">Le cabinet comptable virtuel en Tunisie...</div>
+        <ul class="nav navbar-nav">
+          <li><a routerLink="home" routerLinkActive="active">Acceuil</a></li>
+          <li class="dropdown"style="cursor: pointer;"><a class="dropdown-toggle" data-toggle="dropdown">Sections<span class="caret"></span></a>
+            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+              <!--<li class="dropdown-submenu"><a class="dropdown-toggle" data-toggle="dropdown" >Documentation</a>
+                <ul class="dropdown-menu">
+                  <li><a routerLink="Documentation">comptables</a></li>
+                  <li><a routerLink="Documentation">juridiques</a></li>
+                  <li><a routerLink="Documentation">fiscales</a></li>
+                  <li><a routerLink="Documentation">sociales</a></li>
+                  <li><a routerLink="Documentation">autres</a></li>
+                </ul>
+              </li>
+              <li title=" (veuillez vous inscrire/se connecter)"><a  routerLink="login"*ngIf="!isLoggedIn"routerLinkActive="active">Qui sommes-nous?</a></li>
+          <li><a  routerLink="who" *ngIf="isLoggedIn" routerLinkActive="active">Qui sommes-nous?</a></li>-->
+          
+          <li><a routerLink="why" *ngIf="isLoggedIn" routerLinkActive="active">Pourquoi choisir Macompta</a></li>
+          <li title=" (veuillez vous inscrire/se connecter)"><a routerLink="login"  *ngIf="!isLoggedIn"  routerLinkActive="active">Pourquoi choisir Macompta</a></li>
+          <li><a routerLink="/home/contact"  target=”_blank” routerLinkActive="active">Contact</a></li>
+          
+          <li title=" (Cliquer pour intégrer l'équipe MaCompta)"><a routerLink="career"  routerLinkActive="active">Carrière</a></li>
+            </ul>
+          </li>
+
+
+          <li class="dropdown" style="cursor: pointer;"><a class="dropdown-toggle" *ngIf="isLoggedIn"data-toggle="dropdown">Espace utilisateur <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a routerLink="admin-board" *ngIf="role=='admin'" routerLinkActive="active">Tableau de bord Admin</a></li>
+              <li><a routerLink="settings" *ngIf="role=='admin'" routerLinkActive="active">Paramêtrage Admin</a></li>
+              <!--<li><a routerLink="supervisor-board" *ngIf="role=='supervisor'"routerLinkActive="active">Tableau de bord Superviseur</a></li>-->
+              <!--<li class="disabled"><a routerLink="settings" *ngIf="role=='supervisor'" routerLinkActive="active">Paramêtrage Superviseur</a></li>-->
+              <li><a routerLink="user-board" *ngIf="role=='basic'"routerLinkActive="active">Tableau de bord Utilisateur</a></li>
+              <!--<li class="disabled"><a routerLink="settings" *ngIf="role=='basic'" routerLinkActive="active">Paramêtrage Utilisateur</a></li>-->
+              <li><a routerLink="collab-board" *ngIf="usertype=='Collaborateur'"routerLinkActive="active">Tableau de bord Collaborateur</a></li>
+
+            </ul>
+          </li>
+          <li class="dropdown" style="cursor: pointer;"><a class="dropdown-toggle" *ngIf="isLoggedIn&&usertype!='Candidat'"data-toggle="dropdown">Services en ligne<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="declare-comptabilite" routerLinkActive="active">Tenez votre comptabilité</a></li>
+              <li><a href="declare-fiscality" routerLinkActive="active">Etablissez vos déclarations fiscales</a></li>
+              <!--<li><a routerLink="Documentation" routerLinkActive="active">Préparez vos fiches de paie</a></li>
+              <li><a routerLink="Documentation" routerLinkActive="active">Demandez un conseil</a></li>-->
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a routerLink="profil"  *ngIf="isLoggedIn" routerLinkActive="active">Profil <span *ngIf="nature=='Personne Physique' || !nature">{{username}} {{lastname}}</span><span *ngIf="nature=='Personne Morale'">{{raisonsociale}}</span></a></li>
+          <li title=" (veuillez vous inscrire/se connecter)"><a routerLink="login"  *ngIf="!isLoggedIn"    routerLinkActive="active">Profil {{username}} {{lastname}}</a></li>
+          <li><a href class="nav-link" *ngIf="role=='admin'" routerLink="collab-create" routerLinkActive="active" > <span class="glyphicon glyphicon-user"></span>Ajouter collaborateur</a></li>
+          <li><a href class="nav-link" *ngIf="!isLoggedIn" routerLink="signup" routerLinkActive="active" > <span class="glyphicon glyphicon-user"></span>Inscription Gratuite</a></li>
+          <li><a href class="nav-link" *ngIf="!isLoggedIn" routerLink="login" routerLinkActive="active" > <span class="glyphicon glyphicon-log-in"></span>Connexion</a></li>
+          <li><a id="logoutbutton" *ngIf="isLoggedIn" (click)="logout()"><span class="glyphicon glyphicon-log-out"></span>Déconnexion</a></li>
+        </ul>
+      </div>
+    </nav>
+  
+      
+    </body>
