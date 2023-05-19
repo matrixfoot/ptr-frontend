@@ -10,10 +10,7 @@ import { Userdeleted } from '../models/user-deleted.model';
 import { Router } from '@angular/router';
 import { Condidate } from '../models/condidate.model';
 import { Contact } from '../models/contact.model';
-import { CondidateService } from '../services/condidate.service';
 import { ContactService } from '../services/contact.service';
-import { DecfiscmensService } from '../services/dec-fisc-mens';
-import { DeccomptabiliteService } from '../services/dec-comptabilite';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import {ExcelService} from '../services/excel.service';
 import { Sort } from '../_helpers/sort';
@@ -120,14 +117,11 @@ export class AdminBoardComponent implements OnInit {
   showconnected: boolean;
   constructor(private formBuilder: FormBuilder,
               private UserService: UserService,
-              private cond:CondidateService,
               private cont:ContactService,private commun: CommunService,
-              private dec:DecfiscmensService,
-              private deccompt:DeccomptabiliteService,
               private router: Router,
               private excelService:ExcelService) { }
               ngOnInit() {
-                this.searchForm = this.formBuilder.group({
+                /*this.searchForm = this.formBuilder.group({
               
                   lastname: [null,],
                   firstname: [null,],
@@ -214,9 +208,9 @@ export class AdminBoardComponent implements OnInit {
                this.getcondidates()
                this.getcondidatesall()
                this.getconsultants()
-               this.getcontactsall()
+               this.getcontactsall()*/
               }
-              debutcompteurdecfiscale(link,id)
+              /*debutcompteurdecfiscale(link,id)
               {
 
                 this.dec.getDecfiscmensreqById(id).then(
@@ -1390,7 +1384,7 @@ this.clientactif=false
           click36()
           {
             this.showconnected=false
-          }
+          }*/
           
 }
   

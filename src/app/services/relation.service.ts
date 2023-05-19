@@ -5,8 +5,8 @@ import { map, catchError } from 'rxjs/operators';
 import { Subject, throwError } from 'rxjs';
 import { Relations } from '../models/relation.model';
 
-const API_URL_cloud= 'https://macompta.com.tn:3000/api/relations/'
-    const API_URL_test = 'http://localhost:3003/api/relations/'; 
+const API_URL_cloud= 'https://macompta.com.tn:3002/api/relations/'
+    const API_URL_test = 'http://localhost:3000/api/relations/'; 
 
 @Injectable({
     providedIn: 'root'
@@ -32,7 +32,7 @@ public relations$ = new Subject<Relations[]>();
      addrelations(user:Relations[]) {
         return new Promise((resolve, reject) => {
               
-            this.http.post(API_URL_cloud+'add_multiple_Relations', user).subscribe(
+            this.http.post(API_URL_test+'add_multiple_Relations', user).subscribe(
               (response) => {
                 resolve(response);
               },
@@ -44,7 +44,7 @@ public relations$ = new Subject<Relations[]>();
       }
   // Get All Relations //
   getAll() {
-    this.http.get(API_URL_cloud).subscribe(
+    this.http.get(API_URL_test).subscribe(
       (relations: Relations[]) => {
         if (relations) {
           this.relations = relations;
@@ -63,7 +63,7 @@ public relations$ = new Subject<Relations[]>();
     return new Promise((resolve, reject) => {
       
 
-      this.http.get(API_URL_cloud + id).subscribe(
+      this.http.get(API_URL_test + id).subscribe(
         (response) => {
           resolve(response);
         },
@@ -77,7 +77,7 @@ public relations$ = new Subject<Relations[]>();
   // Delete Single Relation//
   deleteSingleRelation(id) {
     return new Promise((resolve, reject) => {
-      this.http.delete(API_URL_cloud + id).subscribe(
+      this.http.delete(API_URL_test + id).subscribe(
         (response) => {
           resolve(response);
         },
@@ -92,7 +92,7 @@ public relations$ = new Subject<Relations[]>();
       
         
       
-      this.http.put(API_URL_cloud+ id, Relation).subscribe(
+      this.http.put(API_URL_test+ id, Relation).subscribe(
         (response) => {
           resolve(response);
         },
@@ -105,7 +105,7 @@ public relations$ = new Subject<Relations[]>();
   // Get All Relations //
   deleteAllRelations() {
     return new Promise((resolve, reject) => {
-      this.http.delete(API_URL_cloud).subscribe(
+      this.http.delete(API_URL_test).subscribe(
         (response) => {
           resolve(response);
         },
@@ -119,7 +119,7 @@ public relations$ = new Subject<Relations[]>();
   {
     return new Promise((resolve, reject) => {
 
-      this.http.post(API_URL_cloud+ 'sendsms', { description }).subscribe(
+      this.http.post(API_URL_test+ 'sendsms', { description }).subscribe(
         (response) => {
           resolve(response);
         },

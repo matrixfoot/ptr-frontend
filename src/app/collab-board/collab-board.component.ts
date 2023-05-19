@@ -9,10 +9,7 @@ import { Userdeleted } from '../models/user-deleted.model';
 import { Router } from '@angular/router';
 import { Condidate } from '../models/condidate.model';
 import { Contact } from '../models/contact.model';
-import { CondidateService } from '../services/condidate.service';
 import { ContactService } from '../services/contact.service';
-import { DecfiscmensService } from '../services/dec-fisc-mens';
-import { DeccomptabiliteService } from '../services/dec-comptabilite';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import {ExcelService} from '../services/excel.service';
 import { Sort } from '../_helpers/sort';
@@ -115,14 +112,12 @@ export class CollabBoardComponent implements OnInit {
   deccomptabilite: Deccomptabilite;
   constructor(
               private UserService: UserService,
-              private cond:CondidateService,
               private cont:ContactService,
-              private dec:DecfiscmensService,private commun: CommunService,
-              private deccompt:DeccomptabiliteService,
+              private commun: CommunService,
               private router: Router, private Auth: TokenStorageService,
               private excelService:ExcelService) { }
               ngOnInit() {
-                const user = this.Auth.getUser();
+               /* const user = this.Auth.getUser();
                 this.currentuser=user
                 this.usertype=this.currentuser.usertype
                 this.id=this.currentuser.userId
@@ -200,9 +195,9 @@ export class CollabBoardComponent implements OnInit {
                this.getalldeccomptabilites()
                this.getalldecfiscmenss()    
                this.getcondidatesall()
-               this.getcontactsall()
+               this.getcontactsall()*/
               }
-              debutcompteurdecfiscale(link,id)
+              /*debutcompteurdecfiscale(link,id)
               {
 
                 this.dec.getDecfiscmensreqById(id).then(
@@ -680,5 +675,5 @@ this.dossencours=this.dossencours.concat(this.dossencours1,this.dossencours2,thi
            exportusersAsXLSX():void {
             this.excelService.exportAsExcelFile(this.users,[],[],[],[],[],[], 'sample');
           }
-         
+         */
 }

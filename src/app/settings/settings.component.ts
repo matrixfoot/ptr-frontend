@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { read, utils } from "xlsx"
 import Swal from 'sweetalert2';
-import { ApiServiceService } from '../services/event.service';
 import { UserService } from '../services/user.service';
 import { relationService } from '../services/relation.service';
 import { User } from '../models/user.model';
@@ -48,7 +47,7 @@ export class SettingsComponent implements OnInit {
   relationsSub: Subscription;
   relations: Relations[];
   constructor(private token: TokenStorageService,private carousel:CarouselService,private relationservice: relationService,private userservice: UserService,
-    private eve:ApiServiceService,private formBuilder: FormBuilder,private commun: CommunService,
+   private formBuilder: FormBuilder,private commun: CommunService,
     private router: Router,) {
       this.tarifform = this.formBuilder.group({
         ammounts: this.formBuilder.array([ this.createammount() ])
@@ -509,25 +508,45 @@ onFileChange2(event) {
     this.uploadEvent = event;
   }
   let fileReader = new FileReader();
+  var arr = new Array();
   fileReader.onload = (e) => {
-    this.arrayBuffer = fileReader.result;
     //@ts-ignore
-    var data = new Uint8Array(this.arrayBuffer);
-    var arr = new Array();
-    for (var i = 0; i != data.length; ++i)
-      arr[i] = String.fromCharCode(data[i]);
-    var bstr = arr.join("");
-    var workbook = read(bstr, {
-      type: "binary"
-    });
-    var first_sheet_name = workbook.SheetNames[0];
-    var worksheet = workbook.Sheets[first_sheet_name];
-    this.exceljsondata3 = utils.sheet_to_json(worksheet, {
-      raw: true,
-      defval: "",
-    });
+    const guestList = fileReader.result.split(/\r?\n/);
+    for (var i = 0; i != guestList.length; ++i)
+      arr.push(
+        {
+          MERCHANTIDENTIFICATION:guestList[i].substring(0,10),
+          BATCHIDENTIFICATION:guestList[i].substring(10,16),
+          INVOICENUMBER:guestList[i].substring(16,22),
+          CARDHOLDERNUMBER:guestList[i].substring(22,41),
+          MERCHANTSECTOR:guestList[i].substring(41,42),
+          CHANNELTRANSACTIONID:guestList[i].substring(42,43),
+          OPERATIONCODE:guestList[i].substring(43,44),
+          TRANSACTIONCODE:guestList[i].substring(44,46),
+          TRANSACTIONAMOUNT:guestList[i].substring(46,55),
+          CARDEXPIRYDATE:guestList[i].substring(55,59),
+          PROCESSINGDATE:guestList[i].substring(59,65),
+          TRANSACTIONDATE:guestList[i].substring(65,71),
+          AUTHORIZATIONCODE:guestList[i].substring(71,77),
+          REMITTANCEDATE:guestList[i].substring(77,83),
+          MERCHANTCATEGORIECODE:guestList[i].substring(83,87),
+          FILLER:guestList[i].substring(87,89),
+          ACQUIRERBANKIDENTIFICATION:guestList[i].substring(89,94),
+          LOCALCARDSYSTEMNETWORK:guestList[i].substring(94,95),
+          ISSUERBANKIDENTIFICATION:guestList[i].substring(95,100),
+          ACQUIRERREFERENCENUMBER:guestList[i].substring(100,123),
+          TRANSACTIONORDERUSAGECODE:guestList[i].substring(123,125),
+          MERCHANTNAME:guestList[i].substring(125,150),
+          SETTLEMENTAMOUNT:guestList[i].substring(150,159),
+          TRANSACTIONTIME:guestList[i].substring(159,163),
+          FILLER2:guestList[i].substring(163,167),
+          ENDOFRECORD:guestList[i].substring(167,168),
+        }
+        );
+      console.log(arr);
   };
-  fileReader.readAsArrayBuffer(this.file);
+  this.exceljsondata2=arr
+  fileReader.readAsText(this.file);
 }
 afficher2()
 {
@@ -536,7 +555,6 @@ afficher2()
   this.relationservice.addrelations(this.exceljsondata3).then(
     (data:any) => {
       this.loading = false;
-console.log(this.exceljsondata3)        
 Swal.fire({
         position: 'center',
         icon: 'success',

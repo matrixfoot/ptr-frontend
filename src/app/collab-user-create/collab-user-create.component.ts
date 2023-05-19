@@ -39,7 +39,7 @@ export class CollabUserCreateComponent implements OnInit {
       confirmemail: [null, Validators.required],
       mobile: [null, Validators.required],
       confirmmobile: [null, Validators.required],
-      usertype: [null, Validators.required],
+      usertype: [null],
       lastname: [null, Validators.required],
       fonction: [null],
       secteur: [null],
@@ -82,9 +82,7 @@ export class CollabUserCreateComponent implements OnInit {
   }
     const email = this.signupForm.get('email').value;
     
-    const mobile = this.signupForm.get('mobile').value;
-    const usertype = this.signupForm.get('usertype').value;
-    
+    const mobile = this.signupForm.get('mobile').value;    
     const password = this.signupForm.get('password').value;
     const confirmpassword = this.signupForm.get('confirmpassword').value;
     const firstname = this.signupForm.get('firstname').value;
@@ -97,7 +95,7 @@ export class CollabUserCreateComponent implements OnInit {
     const nomsociete = this.signupForm.get('nomsociete').value;
     const clientcode = this.signupForm.get('clientcode').value;
     const role = this.signupForm.get('role').value;
-    this.auth.register(email, password,confirmpassword,mobile,usertype,firstname,lastname,fonction,secteur,civilite,nature,raisonsociale,nomsociete,clientcode,role).subscribe({
+    this.auth.register(email, password,confirmpassword,mobile,firstname,lastname,fonction,secteur,civilite,nature,raisonsociale,nomsociete,clientcode,role).subscribe({
 
       next: data => {
         this.isSuccessful = true;

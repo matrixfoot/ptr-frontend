@@ -17,7 +17,6 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ComingSoonPageComponent } from './coming-soon-page/coming-soon-page.component';
 
-import { ModifyContactreqComponent } from './modify-contactreq/modify-contactreq.component';
 import { CompleteProfilComponent } from './complete-profil/complete-profil.component';
 import { CollabUserCreateComponent } from './collab-user-create/collab-user-create.component';
 
@@ -47,9 +46,7 @@ const routes: Routes = [
 },
     
 
-{ path: 'modify-contactreq/:id', component: ModifyContactreqComponent,
-    
-},
+
 { path: 'modify-user-admin/:id', component: ModifyUserAdminComponent,
     
 },

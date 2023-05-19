@@ -9,7 +9,6 @@ import { Subscription } from 'rxjs';
 import { MustMatch } from '../_helpers/must-match.validator';
 import { AlertService } from '../_helpers/alert.service';
 import Swal from 'sweetalert2';
-import { DeccomptabiliteService } from '../services/dec-comptabilite';
 import { Deccomptabilite } from '../models/dec-comptabilite';
 import { element } from 'protractor';
 @Component({
@@ -66,7 +65,6 @@ export class ModifyUserAdminComponent implements OnInit {
     private userservice: UserService,
     private route: ActivatedRoute,
     private router: Router,
-    private deccompt: DeccomptabiliteService,
     private auth: AuthService,
     private alertService: AlertService) {
       this.editionnoteform = this.formBuilder.group({
@@ -99,7 +97,7 @@ export class ModifyUserAdminComponent implements OnInit {
         this.userservice.getUserById(params.id).then(
           (user: User) => {
             this.user = user; 
-this.deccomptabilitesSub = this.deccompt.deccomptabilites$.subscribe(
+/*this.deccomptabilitesSub = this.deccompt.deccomptabilites$.subscribe(
   (deccomptabilites) => {
     this.deccomptabilites = deccomptabilites;
     //@ts-ignore
@@ -143,7 +141,7 @@ this.loading = false;
     this.errormsg=error.message;
   }
 );
-this.deccompt.getdeccomptabilite(user._id)
+this.deccompt.getdeccomptabilite(user._id)*/
             this.userForm = this.formBuilder.group({
               role: [this.user.role, Validators.required],
               tarif: [this.user.prixspecialminute, Validators.required],

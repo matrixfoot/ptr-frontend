@@ -40,7 +40,6 @@ import { ComingSoonPageComponent } from './coming-soon-page/coming-soon-page.com
 import { AlertComponent } from './alert/alert.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 
-import { ModifyContactreqComponent } from './modify-contactreq/modify-contactreq.component';
 import { CompleteProfilComponent } from './complete-profil/complete-profil.component';
 import { CollabUserCreateComponent } from './collab-user-create/collab-user-create.component';
 import { SortDirective } from './directive/sort.directive';
@@ -96,7 +95,6 @@ FullCalendarModule.registerPlugins([
     AlertComponent,
     SearchBarComponent,
   
-    ModifyContactreqComponent,
     CompleteProfilComponent,
     CollabUserCreateComponent,
     SortDirective,

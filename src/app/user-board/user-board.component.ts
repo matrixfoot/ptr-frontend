@@ -4,14 +4,11 @@ import { Subscription } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
 
-import { CondidateService } from '../services/condidate.service';
 import { Condidate } from '../models/condidate.model';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { User } from '../models/user.model';
 import { TokenStorageService } from '../services/token-storage.service';
 import { UserService } from '../services/user.service';
-import { DecfiscmensService } from '../services/dec-fisc-mens';
-import { DeccomptabiliteService } from '../services/dec-comptabilite';
 import { Deccomptabilite } from '../models/dec-comptabilite';
 import { Decfiscmens } from '../models/dec-fisc-mens';
 import { ContactService } from '../services/contact.service';
@@ -60,11 +57,8 @@ export class UserBoardComponent implements OnInit {
   contnonval=0;
   constructor(          
     private Auth: TokenStorageService,
-    private cond:CondidateService,
     private cont:ContactService,
-    private deccompt: DeccomptabiliteService,
     private router: Router,
-    private dec: DecfiscmensService,
     private route: ActivatedRoute,
     ) { }
   ngOnInit() {
@@ -76,7 +70,7 @@ export class UserBoardComponent implements OnInit {
       this.prenom=user.Firstname
       this.nom=user.Lastname
     this.loading = true;          
-    this.condidatesSub = this.cond.condidates$.subscribe(
+   /* this.condidatesSub = this.cond.condidates$.subscribe(
       (condidates) => {
         this.condidates = condidates;
         this.loading = false;
@@ -145,7 +139,7 @@ export class UserBoardComponent implements OnInit {
         this.deccomptabilite.created=this.converteddate2        
       }
     )
-  };  
+  };  */
   }
   getNavigationcondidates(link, id){
     this.router.navigate([link + '/' + id]); 
