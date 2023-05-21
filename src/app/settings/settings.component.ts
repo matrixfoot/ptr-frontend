@@ -8,9 +8,9 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { read, utils } from "xlsx"
 import Swal from 'sweetalert2';
 import { UserService } from '../services/user.service';
-import { relationService } from '../services/relation.service';
+import { compconfService } from '../services/compconf.service';
 import { User } from '../models/user.model';
-import { Relations } from '../models/relation.model';
+import { Compconf } from '../models/compconf.model';
 import { CommunService } from '../services/commun';
 
 @Component({
@@ -33,7 +33,6 @@ export class SettingsComponent implements OnInit {
   arrayBuffer: string | ArrayBuffer;
   exceljsondata: Event[];
   exceljsondata2: User[];
-  exceljsondata3: Relations[];
   tarifform: FormGroup;
   public ammounts: FormArray;
   public type: any[]=["Tarif de base","Tarif spécial"];
@@ -44,9 +43,9 @@ export class SettingsComponent implements OnInit {
   regimeimpot: any[];
   actualites: Carouselmodel[];
   tarifs: Carouselmodel[];
-  relationsSub: Subscription;
-  relations: Relations[];
-  constructor(private token: TokenStorageService,private carousel:CarouselService,private relationservice: relationService,private userservice: UserService,
+  compconfsSub: Subscription;
+  compconfs: Compconf[];
+  constructor(private token: TokenStorageService,private carousel:CarouselService,private compconfservice: compconfService,private userservice: UserService,
    private formBuilder: FormBuilder,private commun: CommunService,
     private router: Router,) {
       this.tarifform = this.formBuilder.group({
@@ -76,10 +75,10 @@ export class SettingsComponent implements OnInit {
     );
     
       this.carousel.getCarouselalldata();
-      this.relationsSub = this.relationservice.relations$.subscribe(
-        (relations) => {
-          this.relations = relations;
-          console.log(this.relations)
+      this.compconfsSub = this.compconfservice.compconfs$.subscribe(
+        (compconfs) => {
+          this.compconfs = compconfs;
+          console.log(this.compconfs)
           this.loading = false;
         },
         (error) => {
@@ -88,7 +87,7 @@ export class SettingsComponent implements OnInit {
         }
       );
       
-        this.relationservice.getAll();
+        this.compconfservice.getcompconfs();
     
 
     this.carouselform = this.formBuilder.group({
@@ -120,8 +119,6 @@ export class SettingsComponent implements OnInit {
       prix: '',
     });
   }
-
- 
   get f() { return this.carouselform.controls; }
   get ammountControls() {
     return this.tarifform.get('ammounts')['controls'];
@@ -225,7 +222,7 @@ export class SettingsComponent implements OnInit {
   sendsms() {
     this.loading = true;
 
-      this.relationservice.sendsms(this.smsform.get('description').value).then(
+      this.compconfservice.create(this.smsform.get('description').value).then(
         (data:any) => {
           this.smsform.reset();
           this.loading = false;
@@ -404,7 +401,7 @@ myFunction4() {
     text2.style.display = "block";
   } else {
     Swal.fire({
-      title: 'Vous êtes sur le point de réinitialiser tous les donnés relatifs au formulaire d\'ajout de relations, voulez vous continuer?',
+      title: 'Vous êtes sur le point de réinitialiser tous les donnés relatifs au formulaire d\'ajout de compconfs, voulez vous continuer?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -550,15 +547,15 @@ onFileChange2(event) {
 }
 afficher2()
 {
-  this.loading = true;
+  /*this.loading = true;
   console.log(this.exceljsondata3)
-  this.relationservice.addrelations(this.exceljsondata3).then(
+  this.compconfservice.addcompconfs(this.exceljsondata3).then(
     (data:any) => {
       this.loading = false;
 Swal.fire({
         position: 'center',
         icon: 'success',
-        title: 'relations ajoutées avec succès!',
+        title: 'compconfs ajoutées avec succès!',
         showConfirmButton: false,
         timer: 6000 
       });
@@ -568,20 +565,20 @@ Swal.fire({
       this.loading = false;
       
     }
-  );
+  );*/
 }
 deleteall() {
-  this.relationservice.deleteAllRelations().then(
+  /*this.compconfservice.deletecompconfs().then(
     (data: any) => {
       Swal.fire({
         position: 'center',
         icon: 'success',
-        title: 'toutes les relations sont suuprimés avec succès!',
+        title: 'toutes les compconfs sont suuprimés avec succès!',
         showConfirmButton: false,
         timer: 6000 
       });
       this.reloadPage()
-    });
+    });*/
 }
 reloadPage(): void {
   

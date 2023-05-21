@@ -1,0 +1,22 @@
+<div class="container-fluid">
+    <!-- add compconf -->
+    <div class="input-container" id="Check1">
+      <label for="myCheck1">Afficher le formulaire d'ajout de compconf</label>
+      <input type="checkbox" id="myCheck1" (click)="myFunction1()">
+    </div>
+    <div id="bodycontainer1">
+      <div class="container-fluid"> 
+        <fieldset>
+          <legend> Insérer fichier compconf</legend>
+          <div class="form-group row">
+            <label class="col-sm-12 col-form-label"> Charger document</label>
+              <div class="col-sm-12">
+                <input type="file"  class="form-control inputFile" (change)="onFileChange2($event);">
+              </div>
+          </div>
+          <button class="btn btn-success" (click)="save()"> <i class="fa fa-refresh fa-spin" *ngIf="loading"></i>Valider</button>
+        </fieldset>
+      <p>{{ errormsg }}</p> 
+    </div>
+    </div>
+</div>

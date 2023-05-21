@@ -24,6 +24,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { ViewUserDeletedComponent } from './view-user-deleted/view-user-deleted.component';
 
 import { CollabBoardComponent } from './collab-board/collab-board.component';
+import { InsertCompconfFileComponent } from './insert-compconf-file/insert-compconf-file.component';
 
 const routes: Routes = [
   
@@ -81,7 +82,9 @@ const routes: Routes = [
 { path: 'admin-board/profil', component: ProfilComponent,
     
 },
-
+{ path: 'insert-compconf', component: InsertCompconfFileComponent,
+    
+},
 { path: 'coming-soon', component: ComingSoonPageComponent,
     
 },

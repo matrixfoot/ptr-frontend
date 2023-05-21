@@ -58,6 +58,7 @@ import { ViewUserDeletedComponent } from './view-user-deleted/view-user-deleted.
 import { CanDeactivateGuard } from './services/auth-guard.service';
 
 import { CollabBoardComponent } from './collab-board/collab-board.component';
+import { InsertCompconfFileComponent } from './insert-compconf-file/insert-compconf-file.component';
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -104,6 +105,8 @@ FullCalendarModule.registerPlugins([
     ViewUserDeletedComponent,
     
     CollabBoardComponent,
+    
+    InsertCompconfFileComponent,
     
     
     
