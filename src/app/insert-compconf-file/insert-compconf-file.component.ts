@@ -27,7 +27,8 @@ export class InsertCompconfFileComponent implements OnInit {
  compconfsSub: Subscription;
  Compconf: Compconf;
   compconfform: FormGroup;
-  jsondata: any;
+  jsondata: any=[];
+  currentItemsToShow= [];
  constructor(private token: TokenStorageService,private compconfservice: compconfService,private userservice: UserService,
   private formBuilder: FormBuilder,private commun: CommunService,
    private router: Router,) {}
@@ -104,10 +105,14 @@ export class InsertCompconfFileComponent implements OnInit {
           }
           );
         console.log(arr);
+        this.jsondata=arr
+        console.log(arr.length)
+        this.buildData(this.jsondata.length)
     };
-    this.jsondata=arr
+   
     fileReader.readAsText(this.file);
   }
+  
   save()
 {
   this.loading = true;
@@ -131,6 +136,31 @@ Swal.fire({
       
     }
   );
+}
+buildData(length: number) {
+  const ITEMS_RENDERED_AT_ONCE = 500;
+  const INTERVAL_IN_MS = 10;
+
+  let currentIndex = 0;
+
+  const interval = setInterval(() => {
+    const nextIndex = currentIndex + ITEMS_RENDERED_AT_ONCE;
+    for (let n = currentIndex; n <= nextIndex ; n++) 
+    {
+      if (n >= length) {
+        clearInterval(interval);
+        break;
+      }
+      this.currentItemsToShow.push(
+        this.jsondata[n]
+      )
+    }
+console.log(this.currentItemsToShow)
+    currentIndex += ITEMS_RENDERED_AT_ONCE;
+  }, INTERVAL_IN_MS)
+}
+onPageChange($event) {
+  this.currentItemsToShow =  this.jsondata.slice($event.pageIndex*$event.pageSize, $event.pageIndex*$event.pageSize + $event.pageSize);
 }
 reloadPage(): void {
   
