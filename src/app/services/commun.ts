@@ -144,4 +144,16 @@ public time:any
         );
       });
     }
+    filterByValue(array, value) {
+      if(array!=undefined)
+      {
+        return array.filter((data) =>  JSON.stringify(data).toLowerCase().indexOf(value.toLowerCase()) !== -1);
+      }     
+     }
+     findByValue2(array, value) {
+      if(array!=undefined)
+      {
+        return array.find((data) =>  JSON.stringify(data).toLowerCase().indexOf(value.toLowerCase()) !== -1);
+      }     
+     }
 }

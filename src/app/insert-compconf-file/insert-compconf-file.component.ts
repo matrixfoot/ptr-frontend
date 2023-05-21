@@ -29,6 +29,8 @@ export class InsertCompconfFileComponent implements OnInit {
   compconfform: FormGroup;
   jsondata: any=[];
   currentItemsToShow= [];
+  optionValue:any
+  filtreditems=[];
  constructor(private token: TokenStorageService,private compconfservice: compconfService,private userservice: UserService,
   private formBuilder: FormBuilder,private commun: CommunService,
    private router: Router,) {}
@@ -139,7 +141,7 @@ Swal.fire({
 }
 buildData(length: number) {
   const ITEMS_RENDERED_AT_ONCE = 500;
-  const INTERVAL_IN_MS = 10;
+  const INTERVAL_IN_MS = 1000;
 
   let currentIndex = 0;
 
@@ -155,12 +157,18 @@ buildData(length: number) {
         this.jsondata[n]
       )
     }
-console.log(this.currentItemsToShow)
     currentIndex += ITEMS_RENDERED_AT_ONCE;
   }, INTERVAL_IN_MS)
 }
 onPageChange($event) {
   this.currentItemsToShow =  this.jsondata.slice($event.pageIndex*$event.pageSize, $event.pageIndex*$event.pageSize + $event.pageSize);
+}
+filtercompconf()
+{
+  this.filtreditems.push(
+    this.commun.findByValue2(this.currentItemsToShow,this.optionValue)
+  )
+  console.log(this.filtreditems)
 }
 reloadPage(): void {
   

@@ -20,6 +20,8 @@
     </div>
     </div>
     <h2 style="text-align: center;">Liste des transactions (fichier Compconf)</h2>
+<input class="search_input" id="firstname" type="text" placeholder="Chercher"[(ngModel)]="optionValue">
+<a class="search_icon"(click)="filtercompconf()" style="cursor: pointer;"> <i class="fas fa-search"></i></a>
     <mat-paginator 
 (page)="onPageChange($event)"
 [length]="jsondata.length"
@@ -58,6 +60,44 @@
         <th scope="col">END OF RECORD</th>
           </tr>
       </thead>
+      <h4 style="text-align: center;">Liste des transactions filtrée</h4>
+      <tbody *ngIf="filtreditems.length>0">
+        <tr *ngFor="let comp of filtreditems">
+          <td>{{comp.MERCHANTIDENTIFICATION}}</td>
+          <td>{{comp.BATCHIDENTIFICATION}}</td>
+          <td>{{comp.INVOICENUMBER}}</td>
+          <td>{{comp.CARDHOLDERNUMBER}}</td>
+          <td>{{comp.MERCHANTSECTOR}}</td>
+          <td>{{comp.CHANNELTRANSACTIONID}}</td>
+          <td>{{comp.OPERATIONCODE}}</td>
+          <td>{{comp.TRANSACTIONCODE}}</td>
+          <td>{{comp.TRANSACTIONAMOUNT}}</td>
+          <td>{{comp.CARDEXPIRYDATE}}</td>
+          <td>{{comp.PROCESSINGDATE}}</td>
+          <td>{{comp.TRANSACTIONDATE}}</td>
+          <td>{{comp.AUTHORIZATIONCODE}}</td>
+          <td>{{comp.REMITTANCEDATE}}</td>
+          <td>{{comp.MERCHANTCATEGORIECODE}}</td>
+          <td>{{comp.FILLER}}</td>
+          <td>{{comp.ACQUIRERBANKIDENTIFICATION}}</td>
+          <td>{{comp.LOCALCARDSYSTEMNETWORK}}</td>
+          <td>{{comp.ISSUERBANKIDENTIFICATION}}</td>
+          <td>{{comp.ACQUIRERREFERENCENUMBER}}</td>
+          <td>{{comp.TRANSACTIONORDERUSAGECODE}}</td>
+          <td>{{comp.MERCHANTNAME}}</td>
+          <td>{{comp.SETTLEMENTAMOUNT}}</td>
+          <td>{{comp.FILLER2}}</td>
+          <td>{{comp.ENDOFRECORD}}</td>
+          <td><button type="button" class="btn btn-success" (click)="getNavigation('view-carousel',carousel._id)">Consulter</button></td>
+          <td><button type="button" class="btn btn-primary" (click)="getNavigation('modify-carousel',carousel._id)">Modifier</button></td>
+          <td><button type="button" class="btn btn-danger" (click)="onDelete(carousel._id)">Supprimer</button></td>          
+        </tr>
+        </tbody>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h4 style="text-align: center;">Liste des transactions globale</h4>
       <tbody *ngIf="currentItemsToShow.length>0">
       <tr *ngFor="let comp of currentItemsToShow">
         <td>{{comp.MERCHANTIDENTIFICATION}}</td>
