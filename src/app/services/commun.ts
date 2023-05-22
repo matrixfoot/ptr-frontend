@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 const API_URL_test = 'http://localhost:3000/api/commun/';
-const API_URL_cloud= 'https://macompta.com.tn:3002/api/commun/'
+const API_URL_cloud= 'https://rich-tan-bear-belt.cyclic.app/api/commun/'
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -134,7 +134,7 @@ public time:any
       return new Promise((resolve, reject) => {
         
 
-        this.http.get(API_URL_test +'/currenttime').subscribe(
+        this.http.get(API_URL_cloud +'/currenttime').subscribe(
           (response) => {
             resolve(response);
           },
