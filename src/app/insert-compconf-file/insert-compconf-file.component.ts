@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { TokenStorageService } from '../services/token-storage.service';
 import { Carouselmodel } from '../models/settings';
 import { CarouselService } from '../services/settings';
@@ -12,13 +12,25 @@ import { compconfService } from '../services/compconf.service';
 import { User } from '../models/user.model';
 import { Compconf } from '../models/compconf.model';
 import { CommunService } from '../services/commun';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 @Component({
   selector: 'app-insert-compconf-file',
   templateUrl: './insert-compconf-file.component.html',
   styleUrls: ['./insert-compconf-file.component.scss']
 })
 export class InsertCompconfFileComponent implements OnInit {
-
+  @ViewChild(CdkVirtualScrollViewport, {static: false})
+  public viewPort: CdkVirtualScrollViewport;
+  displayStyle: string;
+  settedfiltreditems: any[];
+  displaysearch='none';
+  public get inverseOfTranslation(): string {
+    if (!this.viewPort || !this.viewPort["_renderedContentOffset"]) {
+      return "-0px";
+    }
+    let offset = this.viewPort["_renderedContentOffset"];
+    return `-${offset}px`;
+  }
   currentUser: User;
   loading=false;
  file: any;
@@ -36,6 +48,7 @@ export class InsertCompconfFileComponent implements OnInit {
    private router: Router,) {}
   ngOnInit() {
     this.currentUser = this.token.getUser();
+    
   }
   myFunction1() {
     var checkbox:any = document.getElementById("myCheck1");
@@ -110,6 +123,8 @@ export class InsertCompconfFileComponent implements OnInit {
         this.jsondata=arr
         console.log(arr.length)
         this.buildData(this.jsondata.length)
+        this.displaysearch = "block";
+
     };
    
     fileReader.readAsText(this.file);
@@ -140,7 +155,7 @@ Swal.fire({
   );
 }
 buildData(length: number) {
-  const ITEMS_RENDERED_AT_ONCE = 500;
+  const ITEMS_RENDERED_AT_ONCE = 5000;
   const INTERVAL_IN_MS = 1000;
 
   let currentIndex = 0;
@@ -165,10 +180,17 @@ onPageChange($event) {
 }
 filtercompconf()
 {
+  this.displayStyle = "block";
   this.filtreditems.push(
     this.commun.findByValue2(this.currentItemsToShow,this.optionValue)
   )
-  console.log(this.filtreditems)
+  this.settedfiltreditems= this.filtreditems.filter((obj, index) => {
+    return index === this.filtreditems.findIndex(o => obj === o);
+  });}
+closePopup()
+{
+  this.displayStyle = "none";
+ 
 }
 reloadPage(): void {
   

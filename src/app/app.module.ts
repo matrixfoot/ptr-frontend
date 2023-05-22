@@ -60,6 +60,7 @@ import { CanDeactivateGuard } from './services/auth-guard.service';
 import { CollabBoardComponent } from './collab-board/collab-board.component';
 import { InsertCompconfFileComponent } from './insert-compconf-file/insert-compconf-file.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -129,6 +130,7 @@ FullCalendarModule.registerPlugins([
     FullCalendarModule,
     CarouselModule,
     MatPaginatorModule,
+    ScrollingModule,
     ModalModule.forRoot(),
 
     

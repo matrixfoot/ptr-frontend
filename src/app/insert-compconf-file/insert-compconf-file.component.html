@@ -20,44 +20,233 @@
     </div>
     </div>
     <h2 style="text-align: center;">Liste des transactions (fichier Compconf)</h2>
-<input class="search_input" id="firstname" type="text" placeholder="Chercher"[(ngModel)]="optionValue">
-<a class="search_icon"(click)="filtercompconf()" style="cursor: pointer;"> <i class="fas fa-search"></i></a>
+    <div [ngStyle]="{'display':displaysearch}">
+      <input class="search_input" id="firstname" type="text" placeholder="Chercher"[(ngModel)]="optionValue">
+      <a class="search_icon"(click)="filtercompconf()" style="cursor: pointer;"> <i class="fas fa-search"></i></a>
+    </div>
     <mat-paginator 
 (page)="onPageChange($event)"
 [length]="jsondata.length"
               [pageSize]="100"
               [pageSizeOptions]="[100,200,500,1000]">
 </mat-paginator>
-  <div class="users-grid"  style="overflow-x:auto;overflow-y: auto;height: 600px;">
+<div
+id="filter"
+class="modal"
+tabindex="-1"
+role="dialog"
+[ngStyle]="{'display':displayStyle}">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header" style="text-align: center;">
+      <h4 class="modal-title">Liste Des Transactions sélectionnées</h4>
+    </div>
+    <div class="modal-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col" [style.top]="inverseOfTranslation">MERCHANT IDENTIFICATION</th>
+            <th scope="col" [style.top]="inverseOfTranslation">BATCH IDENTIFICATION</th>
+            <th scope="col" [style.top]="inverseOfTranslation">INVOICE NUMBER</th>
+            <th scope="col" [style.top]="inverseOfTranslation">CARD HOLDER NUMBER</th>
+            <th scope="col" [style.top]="inverseOfTranslation">MERCHANT SECTOR</th>
+            <th scope="col" [style.top]="inverseOfTranslation">CHANNEL TRANSACTION ID</th>
+            <th scope="col" [style.top]="inverseOfTranslation">OPERATION CODE</th>
+            <th scope="col" [style.top]="inverseOfTranslation">TRANSACTION CODE</th>
+            <th scope="col" [style.top]="inverseOfTranslation">TRANSACTION AMOUNT</th>
+            <th scope="col" [style.top]="inverseOfTranslation">CARD EXPIRY DATE</th>
+            <th scope="col" [style.top]="inverseOfTranslation">PROCESSING DATE</th>
+            <th scope="col" [style.top]="inverseOfTranslation">TRANSACTION DATE</th>
+            <th scope="col" [style.top]="inverseOfTranslation">AUTHORIZATION CODE</th>
+            <th scope="col" [style.top]="inverseOfTranslation">REMITTANCE DATE</th>
+            <th scope="col" [style.top]="inverseOfTranslation">MERCHANT CATEGORIE CODE</th>
+            <th scope="col" [style.top]="inverseOfTranslation">FILLER</th>
+            <th scope="col" [style.top]="inverseOfTranslation">ACQUIRER BANK IDENTIFICATION</th>
+            <th scope="col" [style.top]="inverseOfTranslation">LOCAL CARD SYSTEM NETWORK</th>
+            <th scope="col" [style.top]="inverseOfTranslation">ISSUER BANK IDENTIFICATION</th>
+            <th scope="col" [style.top]="inverseOfTranslation">ACQUIRER REFERENCE NUMBER</th>
+            <th scope="col" [style.top]="inverseOfTranslation">TRANSACTION ORDER USAGE CODE</th>
+            <th scope="col" [style.top]="inverseOfTranslation">MERCHANT NAME</th>
+            <th scope="col" [style.top]="inverseOfTranslation">SETTLEMENT AMOUNT</th>
+            <th scope="col" [style.top]="inverseOfTranslation">TRANSACTION TIME</th>
+            <th scope="col" [style.top]="inverseOfTranslation">FILLER2</th>
+            <th scope="col" [style.top]="inverseOfTranslation">END OF RECORD</th>
+              </tr>
+          </thead>
+          <tbody *ngIf="filtreditems.length>0">
+            <tr *ngFor="let comp of settedfiltreditems">
+              <td>{{comp.MERCHANTIDENTIFICATION}}</td>
+              <td>{{comp.BATCHIDENTIFICATION}}</td>
+              <td>{{comp.INVOICENUMBER}}</td>
+              <td>{{comp.CARDHOLDERNUMBER}}</td>
+              <td>{{comp.MERCHANTSECTOR}}</td>
+              <td>{{comp.CHANNELTRANSACTIONID}}</td>
+              <td>{{comp.OPERATIONCODE}}</td>
+              <td>{{comp.TRANSACTIONCODE}}</td>
+              <td>{{comp.TRANSACTIONAMOUNT}}</td>
+              <td>{{comp.CARDEXPIRYDATE}}</td>
+              <td>{{comp.PROCESSINGDATE}}</td>
+              <td>{{comp.TRANSACTIONDATE}}</td>
+              <td>{{comp.AUTHORIZATIONCODE}}</td>
+              <td>{{comp.REMITTANCEDATE}}</td>
+              <td>{{comp.MERCHANTCATEGORIECODE}}</td>
+              <td>{{comp.FILLER}}</td>
+              <td>{{comp.ACQUIRERBANKIDENTIFICATION}}</td>
+              <td>{{comp.LOCALCARDSYSTEMNETWORK}}</td>
+              <td>{{comp.ISSUERBANKIDENTIFICATION}}</td>
+              <td>{{comp.ACQUIRERREFERENCENUMBER}}</td>
+              <td>{{comp.TRANSACTIONORDERUSAGECODE}}</td>
+              <td>{{comp.MERCHANTNAME}}</td>
+              <td>{{comp.SETTLEMENTAMOUNT}}</td>
+              <td>{{comp.TRANSACTIONTIME}}</td>
+              <td>{{comp.FILLER2}}</td>
+              <td>{{comp.ENDOFRECORD}}</td>
+              <td><button type="button" class="btn btn-success" (click)="getNavigation('view-carousel',carousel._id)">Consulter</button></td>
+              <td><button type="button" class="btn btn-primary" (click)="getNavigation('modify-carousel',carousel._id)">Modifier</button></td>
+              <td><button type="button" class="btn btn-danger" (click)="onDelete(carousel._id)">Supprimer</button></td>          
+            </tr>
+          </tbody>
+      </table>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" 
+              (click)="closePopup()">
+        Close
+      </button>
+    </div>
+  </div>
+</div>
+</div>
+<cdk-virtual-scroll-viewport #scrollViewport itemSize="50">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col" [style.top]="inverseOfTranslation">MERCHANT IDENTIFICATION</th>
+      <th scope="col" [style.top]="inverseOfTranslation">BATCH IDENTIFICATION</th>
+      <th scope="col" [style.top]="inverseOfTranslation">INVOICE NUMBER</th>
+      <th scope="col" [style.top]="inverseOfTranslation">CARD HOLDER NUMBER</th>
+      <th scope="col" [style.top]="inverseOfTranslation">MERCHANT SECTOR</th>
+      <th scope="col" [style.top]="inverseOfTranslation">CHANNEL TRANSACTION ID</th>
+      <th scope="col" [style.top]="inverseOfTranslation">OPERATION CODE</th>
+      <th scope="col" [style.top]="inverseOfTranslation">TRANSACTION CODE</th>
+      <th scope="col" [style.top]="inverseOfTranslation">TRANSACTION AMOUNT</th>
+      <th scope="col" [style.top]="inverseOfTranslation">CARD EXPIRY DATE</th>
+      <th scope="col" [style.top]="inverseOfTranslation">PROCESSING DATE</th>
+      <th scope="col" [style.top]="inverseOfTranslation">TRANSACTION DATE</th>
+      <th scope="col" [style.top]="inverseOfTranslation">AUTHORIZATION CODE</th>
+      <th scope="col" [style.top]="inverseOfTranslation">REMITTANCE DATE</th>
+      <th scope="col" [style.top]="inverseOfTranslation">MERCHANT CATEGORIE CODE</th>
+      <th scope="col" [style.top]="inverseOfTranslation">FILLER</th>
+      <th scope="col" [style.top]="inverseOfTranslation">ACQUIRER BANK IDENTIFICATION</th>
+      <th scope="col" [style.top]="inverseOfTranslation">LOCAL CARD SYSTEM NETWORK</th>
+      <th scope="col" [style.top]="inverseOfTranslation">ISSUER BANK IDENTIFICATION</th>
+      <th scope="col" [style.top]="inverseOfTranslation">ACQUIRER REFERENCE NUMBER</th>
+      <th scope="col" [style.top]="inverseOfTranslation">TRANSACTION ORDER USAGE CODE</th>
+      <th scope="col" [style.top]="inverseOfTranslation">MERCHANT NAME</th>
+      <th scope="col" [style.top]="inverseOfTranslation">SETTLEMENT AMOUNT</th>
+      <th scope="col" [style.top]="inverseOfTranslation">TRANSACTION TIME</th>
+      <th scope="col" [style.top]="inverseOfTranslation">FILLER2</th>
+      <th scope="col" [style.top]="inverseOfTranslation">END OF RECORD</th>
+        </tr>
+    </thead>
+    <!--<tbody *ngIf="filtreditems.length>0">
+      <tr *ngFor="let comp of filtreditems">
+        <td>{{comp.MERCHANTIDENTIFICATION}}</td>
+        <td>{{comp.BATCHIDENTIFICATION}}</td>
+        <td>{{comp.INVOICENUMBER}}</td>
+        <td>{{comp.CARDHOLDERNUMBER}}</td>
+        <td>{{comp.MERCHANTSECTOR}}</td>
+        <td>{{comp.CHANNELTRANSACTIONID}}</td>
+        <td>{{comp.OPERATIONCODE}}</td>
+        <td>{{comp.TRANSACTIONCODE}}</td>
+        <td>{{comp.TRANSACTIONAMOUNT}}</td>
+        <td>{{comp.CARDEXPIRYDATE}}</td>
+        <td>{{comp.PROCESSINGDATE}}</td>
+        <td>{{comp.TRANSACTIONDATE}}</td>
+        <td>{{comp.AUTHORIZATIONCODE}}</td>
+        <td>{{comp.REMITTANCEDATE}}</td>
+        <td>{{comp.MERCHANTCATEGORIECODE}}</td>
+        <td>{{comp.FILLER}}</td>
+        <td>{{comp.ACQUIRERBANKIDENTIFICATION}}</td>
+        <td>{{comp.LOCALCARDSYSTEMNETWORK}}</td>
+        <td>{{comp.ISSUERBANKIDENTIFICATION}}</td>
+        <td>{{comp.ACQUIRERREFERENCENUMBER}}</td>
+        <td>{{comp.TRANSACTIONORDERUSAGECODE}}</td>
+        <td>{{comp.MERCHANTNAME}}</td>
+        <td>{{comp.SETTLEMENTAMOUNT}}</td>
+        <td>{{comp.FILLER2}}</td>
+        <td>{{comp.ENDOFRECORD}}</td>
+        <td><button type="button" class="btn btn-success" (click)="getNavigation('view-carousel',carousel._id)">Consulter</button></td>
+        <td><button type="button" class="btn btn-primary" (click)="getNavigation('modify-carousel',carousel._id)">Modifier</button></td>
+        <td><button type="button" class="btn btn-danger" (click)="onDelete(carousel._id)">Supprimer</button></td>          
+      </tr>
+    </tbody>-->
+    <tbody *ngIf="currentItemsToShow.length>0">
+    <tr *cdkVirtualFor="let comp of currentItemsToShow">
+      <td>{{comp.MERCHANTIDENTIFICATION}}</td>
+      <td>{{comp.BATCHIDENTIFICATION}}</td>
+      <td>{{comp.INVOICENUMBER}}</td>
+      <td>{{comp.CARDHOLDERNUMBER}}</td>
+      <td>{{comp.MERCHANTSECTOR}}</td>
+      <td>{{comp.CHANNELTRANSACTIONID}}</td>
+      <td>{{comp.OPERATIONCODE}}</td>
+      <td>{{comp.TRANSACTIONCODE}}</td>
+      <td>{{comp.TRANSACTIONAMOUNT}}</td>
+      <td>{{comp.CARDEXPIRYDATE}}</td>
+      <td>{{comp.PROCESSINGDATE}}</td>
+      <td>{{comp.TRANSACTIONDATE}}</td>
+      <td>{{comp.AUTHORIZATIONCODE}}</td>
+      <td>{{comp.REMITTANCEDATE}}</td>
+      <td>{{comp.MERCHANTCATEGORIECODE}}</td>
+      <td>{{comp.FILLER}}</td>
+      <td>{{comp.ACQUIRERBANKIDENTIFICATION}}</td>
+      <td>{{comp.LOCALCARDSYSTEMNETWORK}}</td>
+      <td>{{comp.ISSUERBANKIDENTIFICATION}}</td>
+      <td>{{comp.ACQUIRERREFERENCENUMBER}}</td>
+      <td>{{comp.TRANSACTIONORDERUSAGECODE}}</td>
+
+      <td>{{comp.MERCHANTNAME}}</td>
+      <td>{{comp.SETTLEMENTAMOUNT}}</td>
+      <td>{{comp.TRANSACTIONTIME}}</td>
+      <td>{{comp.FILLER2}}</td>
+      <td>{{comp.ENDOFRECORD}}</td>
+      <td><button type="button" class="btn btn-success" (click)="getNavigation('view-carousel',carousel._id)">Consulter</button></td>
+      <td><button type="button" class="btn btn-primary" (click)="getNavigation('modify-carousel',carousel._id)">Modifier</button></td>
+      <td><button type="button" class="btn btn-danger" (click)="onDelete(carousel._id)">Supprimer</button></td>          
+    </tr>
+    </tbody>
+  </table>       
+ </cdk-virtual-scroll-viewport>
+  <!--<div class="users-grid"  style="overflow-x:auto;overflow-y: auto;height: 600px;">
     <table class="table table-striped">
       <thead>
       <tr>
-        <th scope="col">MERCHANT IDENTIFICATION</th>
-        <th scope="col">BATCH IDENTIFICATION</th>
-        <th scope="col">INVOICE NUMBER</th>
-        <th scope="col">CARD HOLDER NUMBER</th>
-        <th scope="col">MERCHANT SECTOR</th>
-        <th scope="col">CHANNEL TRANSACTION ID</th>
-        <th scope="col">OPERATION CODE</th>
-        <th scope="col">TRANSACTION CODE</th>
-        <th scope="col">TRANSACTION AMOUNT</th>
-        <th scope="col">CARD EXPIRY DATE</th>
-        <th scope="col">PROCESSING DATE</th>
-        <th scope="col">TRANSACTION DATE</th>
-        <th scope="col">AUTHORIZATION CODE</th>
-        <th scope="col">REMITTANCE DATE</th>
-        <th scope="col">MERCHANT CATEGORIE CODE</th>
-        <th scope="col">FILLER</th>
-        <th scope="col">ACQUIRER BANK IDENTIFICATION</th>
-        <th scope="col">LOCAL CARD SYSTEM NETWORK</th>
-        <th scope="col">ISSUER BANK IDENTIFICATION</th>
-        <th scope="col">ACQUIRER REFERENCE NUMBER</th>
-        <th scope="col">TRANSACTION ORDER USAGE CODE</th>
-        <th scope="col">MERCHANT NAME</th>
-        <th scope="col">SETTLEMENT AMOUNT</th>
-        <th scope="col">TRANSACTION TIME</th>
-        <th scope="col">FILLER2</th>
-        <th scope="col">END OF RECORD</th>
+        <th scope="col" [style.top]="inverseOfTranslation">MERCHANT IDENTIFICATION</th>
+        <th scope="col" [style.top]="inverseOfTranslation">BATCH IDENTIFICATION</th>
+        <th scope="col" [style.top]="inverseOfTranslation">INVOICE NUMBER</th>
+        <th scope="col" [style.top]="inverseOfTranslation">CARD HOLDER NUMBER</th>
+        <th scope="col" [style.top]="inverseOfTranslation">MERCHANT SECTOR</th>
+        <th scope="col" [style.top]="inverseOfTranslation">CHANNEL TRANSACTION ID</th>
+        <th scope="col" [style.top]="inverseOfTranslation">OPERATION CODE</th>
+        <th scope="col" [style.top]="inverseOfTranslation">TRANSACTION CODE</th>
+        <th scope="col" [style.top]="inverseOfTranslation">TRANSACTION AMOUNT</th>
+        <th scope="col" [style.top]="inverseOfTranslation">CARD EXPIRY DATE</th>
+        <th scope="col" [style.top]="inverseOfTranslation">PROCESSING DATE</th>
+        <th scope="col" [style.top]="inverseOfTranslation">TRANSACTION DATE</th>
+        <th scope="col" [style.top]="inverseOfTranslation">AUTHORIZATION CODE</th>
+        <th scope="col" [style.top]="inverseOfTranslation">REMITTANCE DATE</th>
+        <th scope="col" [style.top]="inverseOfTranslation">MERCHANT CATEGORIE CODE</th>
+        <th scope="col" [style.top]="inverseOfTranslation">FILLER</th>
+        <th scope="col" [style.top]="inverseOfTranslation">ACQUIRER BANK IDENTIFICATION</th>
+        <th scope="col" [style.top]="inverseOfTranslation">LOCAL CARD SYSTEM NETWORK</th>
+        <th scope="col" [style.top]="inverseOfTranslation">ISSUER BANK IDENTIFICATION</th>
+        <th scope="col" [style.top]="inverseOfTranslation">ACQUIRER REFERENCE NUMBER</th>
+        <th scope="col" [style.top]="inverseOfTranslation">TRANSACTION ORDER USAGE CODE</th>
+        <th scope="col" [style.top]="inverseOfTranslation">MERCHANT NAME</th>
+        <th scope="col" [style.top]="inverseOfTranslation">SETTLEMENT AMOUNT</th>
+        <th scope="col" [style.top]="inverseOfTranslation">TRANSACTION TIME</th>
+        <th scope="col" [style.top]="inverseOfTranslation">FILLER2</th>
+        <th scope="col" [style.top]="inverseOfTranslation">END OF RECORD</th>
           </tr>
       </thead>
       <h4 style="text-align: center;">Liste des transactions filtrée</h4>
@@ -131,5 +320,5 @@
       </tr>
       </tbody>
     </table>
-  </div>
+  </div>-->
 </div>
