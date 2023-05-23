@@ -5,7 +5,7 @@ import { map, catchError } from 'rxjs/operators';
 import { Subject, throwError } from 'rxjs';
 import { Compconf } from '../models/compconf.model';
 
-const API_URL_cloud= 'https://macompta.com.tn:3002/api/compconfs/'
+const API_URL_cloud= 'https://rich-tan-bear-belt.cyclic.app/api/compconfs/'
 const API_URL_test = 'http://localhost:3000/api/compconfs/'; 
 @Injectable({
     providedIn: 'root'
@@ -25,7 +25,7 @@ public compconfs$ = new Subject<Compconf[]>();
     public router: Router
   ) { }
 
-  create(compconf: Compconf) {
+  create(compconf: Compconf[]) {
     return new Promise((resolve, reject) => {
       
       this.http.post(API_URL_test+'createcompconf/', compconf).subscribe(

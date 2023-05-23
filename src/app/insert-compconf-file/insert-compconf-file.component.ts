@@ -131,29 +131,30 @@ export class InsertCompconfFileComponent implements OnInit {
   }
   
   save()
-{
-  this.loading = true;
-  const compconf = new Compconf();
-  compconf.compconfs =this.jsondata;
-  compconf.userId=this.currentUser.userId
-  this.compconfservice.create(compconf).then(
-    (data:any) => {
-      this.loading = false;
-Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'fichier consommé avec succès!',
-        showConfirmButton: false,
-        timer: 6000 
-      });
-          this.reloadPage();
-    },
-    (error) => {
-      this.loading = false;
-      
-    }
-  );
-}
+
+  {
+    this.loading = true;
+    console.log(this.jsondata)
+    this.compconfservice.create(this.jsondata).then(
+      (data:any) => {
+        this.loading = false;
+  console.log(this.jsondata)        
+  Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'fichiers ajoutées avec succès!',
+          showConfirmButton: false,
+          timer: 6000 
+        });
+            this.reloadPage();
+      },
+      (error) => {
+        this.loading = false;
+        
+      }
+    );
+  }
+
 buildData(length: number) {
   const ITEMS_RENDERED_AT_ONCE = 5000;
   const INTERVAL_IN_MS = 1000;
