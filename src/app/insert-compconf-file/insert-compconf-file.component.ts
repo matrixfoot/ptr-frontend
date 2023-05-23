@@ -91,6 +91,8 @@ export class InsertCompconfFileComponent implements OnInit {
       for (var i = 0; i != guestList.length; ++i)
         arr.push(
           {
+            doctype:'compconf',
+            userId:this.currentUser.userId,
             MERCHANTIDENTIFICATION:guestList[i].substring(0,10),
             BATCHIDENTIFICATION:guestList[i].substring(10,16),
             INVOICENUMBER:guestList[i].substring(16,22),
