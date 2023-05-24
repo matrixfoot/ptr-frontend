@@ -1,8 +1,34 @@
 export class Compconf {
    
     _id: string;
-    compconfs:[];
-    userId:string;
+    doctype:'compconf';
+            userId:string;
+            MERCHANTIDENTIFICATION:string;
+            BATCHIDENTIFICATION:string;
+            INVOICENUMBER:string;
+            CARDHOLDERNUMBER:string;
+            MERCHANTSECTOR:string;
+            CHANNELTRANSACTIONID:string;
+            OPERATIONCODE:string;
+            TRANSACTIONCODE:string;
+            TRANSACTIONAMOUNT:string;
+            CARDEXPIRYDATE:string;
+            PROCESSINGDATE:string;
+            TRANSACTIONDATE:string;
+            AUTHORIZATIONCODE:string;
+            REMITTANCEDATE:string;
+            MERCHANTCATEGORIECODE:string;
+            FILLER:string;
+            ACQUIRERBANKIDENTIFICATION:string;
+            LOCALCARDSYSTEMNETWORK:string;
+            ISSUERBANKIDENTIFICATION:string;
+            ACQUIRERREFERENCENUMBER:string;
+            TRANSACTIONORDERUSAGECODE:string;
+            MERCHANTNAME:string;
+            SETTLEMENTAMOUNT:string;
+            TRANSACTIONTIME:string;
+            FILLER2:string;
+            ENDOFRECORD:string;
     created:Date; 
     updated: Date
 }

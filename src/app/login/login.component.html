@@ -2,10 +2,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
 <body>
-  <div class="left">
-    <div class="side">
-</div>
-<div class="main">
   <div class="container-fluid">
     <div id="loader" *ngIf="loading"></div>
     <div class="container-fluid" *ngIf="!loading && !isLoggedIn">
@@ -38,8 +34,5 @@
   <div class="alert alert-success" *ngIf="isLoggedIn" routerLink="forgot-password">
   Bienvenue {{civilite}} {{ firstname}} {{ lastname}}
   </div>
-</div>
-</div>
-</div>
-   
+</div> 
     </body>

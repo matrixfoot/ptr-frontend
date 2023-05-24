@@ -1,6 +1,6 @@
 
   <body>
-    <nav class="navbar navbar-inverse">
+    <!--<nav class="navbar navbar-inverse">
       <div class="container-fluid" style="padding:10px">
         <div class="navbar-header">
           <a class="navbar-brand" routerLink="home" routerLinkActive="active"></a>
@@ -11,7 +11,7 @@
           <li><a routerLink="insert-compconf" routerLinkActive="active">insérer compconf</a></li>
           <li class="dropdown"style="cursor: pointer;"><a class="dropdown-toggle" data-toggle="dropdown">Sections<span class="caret"></span></a>
             <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-              <!--<li class="dropdown-submenu"><a class="dropdown-toggle" data-toggle="dropdown" >Documentation</a>
+              <li class="dropdown-submenu"><a class="dropdown-toggle" data-toggle="dropdown" >Documentation</a>
                 <ul class="dropdown-menu">
                   <li><a routerLink="Documentation">comptables</a></li>
                   <li><a routerLink="Documentation">juridiques</a></li>
@@ -21,7 +21,7 @@
                 </ul>
               </li>
               <li title=" (veuillez vous inscrire/se connecter)"><a  routerLink="login"*ngIf="!isLoggedIn"routerLinkActive="active">Qui sommes-nous?</a></li>
-          <li><a  routerLink="who" *ngIf="isLoggedIn" routerLinkActive="active">Qui sommes-nous?</a></li>-->
+          <li><a  routerLink="who" *ngIf="isLoggedIn" routerLinkActive="active">Qui sommes-nous?</a></li>
           
           <li><a routerLink="why" *ngIf="isLoggedIn" routerLinkActive="active">Pourquoi choisir Macompta</a></li>
           <li title=" (veuillez vous inscrire/se connecter)"><a routerLink="login"  *ngIf="!isLoggedIn"  routerLinkActive="active">Pourquoi choisir Macompta</a></li>
@@ -36,10 +36,10 @@
             <ul class="dropdown-menu">
               <li><a routerLink="admin-board" *ngIf="role=='admin'" routerLinkActive="active">Tableau de bord Admin</a></li>
               <li><a routerLink="settings" *ngIf="role=='admin'" routerLinkActive="active">Paramêtrage Admin</a></li>
-              <!--<li><a routerLink="supervisor-board" *ngIf="role=='supervisor'"routerLinkActive="active">Tableau de bord Superviseur</a></li>-->
-              <!--<li class="disabled"><a routerLink="settings" *ngIf="role=='supervisor'" routerLinkActive="active">Paramêtrage Superviseur</a></li>-->
+              <li><a routerLink="supervisor-board" *ngIf="role=='supervisor'"routerLinkActive="active">Tableau de bord Superviseur</a></li>-->
+              <!--<li class="disabled"><a routerLink="settings" *ngIf="role=='supervisor'" routerLinkActive="active">Paramêtrage Superviseur</a></li>
               <li><a routerLink="user-board" *ngIf="role=='basic'"routerLinkActive="active">Tableau de bord Utilisateur</a></li>
-              <!--<li class="disabled"><a routerLink="settings" *ngIf="role=='basic'" routerLinkActive="active">Paramêtrage Utilisateur</a></li>-->
+              <li class="disabled"><a routerLink="settings" *ngIf="role=='basic'" routerLinkActive="active">Paramêtrage Utilisateur</a></li>
               <li><a routerLink="collab-board" *ngIf="usertype=='Collaborateur'"routerLinkActive="active">Tableau de bord Collaborateur</a></li>
 
             </ul>
@@ -48,8 +48,8 @@
             <ul class="dropdown-menu">
               <li><a href="declare-comptabilite" routerLinkActive="active">Tenez votre comptabilité</a></li>
               <li><a href="declare-fiscality" routerLinkActive="active">Etablissez vos déclarations fiscales</a></li>
-              <!--<li><a routerLink="Documentation" routerLinkActive="active">Préparez vos fiches de paie</a></li>
-              <li><a routerLink="Documentation" routerLinkActive="active">Demandez un conseil</a></li>-->
+              <li><a routerLink="Documentation" routerLinkActive="active">Préparez vos fiches de paie</a></li>
+              <li><a routerLink="Documentation" routerLinkActive="active">Demandez un conseil</a></li>
             </ul>
           </li>
         </ul>
@@ -62,7 +62,170 @@
           <li><a id="logoutbutton" *ngIf="isLoggedIn" (click)="logout()"><span class="glyphicon glyphicon-log-out"></span>Déconnexion</a></li>
         </ul>
       </div>
-    </nav>
+    </nav>-->
   
-      
+    
+    
+    <!-- Navbar-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid justify-content-between">
+    <!-- Left elements -->
+    <div class="d-flex">
+      <!-- Brand -->
+      <a class="navbar-brand me-2 mb-1 d-flex align-items-center" routerLink="home" routerLinkActive="active"></a>
+      <!-- Search form 
+      <form class="input-group w-auto my-auto d-none d-sm-flex">
+        <input
+          autocomplete="off"
+          type="search"
+          class="form-control rounded"
+          placeholder="Search"
+          style="min-width: 125px;"
+        />
+        <span class="input-group-text border-0 d-none d-lg-flex"
+          ><i class="fa fa-search"></i
+        ></span>
+      </form>-->
+      <ul class="navbar-nav align-items-center">
+        <li class="nav-item me-3 me-lg-1 active">
+          <a class="nav-link" href="#">
+            <span><i class="fa fa-home fa-lg"></i></span>
+            <span class="badge rounded-pill badge-notification bg-danger">1</span>
+          </a>
+        </li>
+        <li><a routerLink="insert-compconf" routerLinkActive="active">insérer fichier</a></li>
+        <!--<li class="nav-item me-3 me-lg-1">
+          <a class="nav-link" href="#">
+            <span><i class="fa fa-video fa-lg"></i></span>
+          </a>
+        </li>
+        <li class="nav-item me-3 me-lg-1">
+          <a class="nav-link" href="#">
+            <span><i class="fa fa-shopping-bag fa-lg"></i></span>
+          </a>
+        </li>
+        <li class="nav-item me-3 me-lg-1">
+          <a class="nav-link" href="#">
+            <span><i class="fa fa-users fa-lg"></i></span>
+            <span class="badge rounded-pill badge-notification bg-danger">2</span>
+          </a>
+        </li>-->
+      </ul>
+    </div>
+    <!-- Left elements -->
+
+    <!-- Center elements -->
+
+    <!-- Center elements -->
+    <ul class="navbar-nav flex-row d-none d-md-flex">
+      <h4 class="nav-item me-3 me-lg-1 active">La plateforme de traitement des réclamations</h4>
+    </ul>
+    <!-- Right elements -->
+    <ul class="navbar-nav flex-row">
+      <li class="nav-item me-3 me-lg-1">
+        <a class="nav-link d-sm-flex align-items-sm-center" routerLink="profil"  *ngIf="isLoggedIn" routerLinkActive="active">
+          <img
+            src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
+            class="rounded-circle"
+            height="22"
+            alt="Black and White Portrait of a Man"
+            loading="lazy"
+          />
+          <strong class="d-none d-sm-block ms-1">{{username}} {{lastname}}</strong>
+        </a>
+      </li>
+      <li class="nav-item me-3 me-lg-1">
+        <a class="nav-link" href class="nav-link" *ngIf="!isLoggedIn" routerLink="signup" routerLinkActive="active" > <span class="glyphicon glyphicon-user">Inscription Gratuite</span>
+        </a>
+      </li>
+      <li class="nav-item me-3 me-lg-1">
+        <a href class="nav-link" *ngIf="!isLoggedIn" routerLink="login" routerLinkActive="active" > <span class="glyphicon glyphicon-log-in">Connexion</span> 
+        </a>
+      </li>
+      <li class="nav-item dropdown me-3 me-lg-1">
+        <a
+          class="nav-link dropdown-toggle hidden-arrow"
+          href="#"
+          id="navbarDropdownMenuLink"
+          role="button"
+          data-mdb-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <i class="fa fa-comments fa-lg"></i>
+
+          <span class="badge rounded-pill badge-notification bg-danger">6</span>
+        </a>
+        <ul
+          class="dropdown-menu dropdown-menu-end"
+          aria-labelledby="navbarDropdownMenuLink"
+        >
+          <li>
+            <a class="dropdown-item" href="#">Some news</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">Another news</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item dropdown me-3 me-lg-1">
+        <a
+          class="nav-link dropdown-toggle hidden-arrow"
+          href="#"
+          id="navbarDropdownMenuLink"
+          role="button"
+          data-mdb-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <i class="fa fa-bell fa-lg"></i>
+          <span class="badge rounded-pill badge-notification bg-danger">12</span>
+        </a>
+        <ul
+          class="dropdown-menu dropdown-menu-end"
+          aria-labelledby="navbarDropdownMenuLink"
+        >
+          <li>
+            <a class="dropdown-item" href="#">Some news</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">Another news</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item dropdown me-3 me-lg-1">
+        <a
+          class="nav-link dropdown-toggle hidden-arrow"
+          href="#"
+          id="navbarDropdownMenuLink"
+          role="button"
+          data-mdb-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <i class="fa fa-chevron-circle-down fa-lg"></i>
+        </a>
+        <ul
+          class="dropdown-menu dropdown-menu-end"
+          aria-labelledby="navbarDropdownMenuLink"
+        >
+          <li>
+            <a class="dropdown-item" href="#">Some news</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">Another news</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <!-- Right elements -->
+  </div>
+</nav>
+<!-- Navbar -->
     </body>

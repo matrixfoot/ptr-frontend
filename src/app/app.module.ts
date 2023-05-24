@@ -61,6 +61,7 @@ import { CollabBoardComponent } from './collab-board/collab-board.component';
 import { InsertCompconfFileComponent } from './insert-compconf-file/insert-compconf-file.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { ViewCompconfsComponent } from './view-compconfs/view-compconfs.component';
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -109,6 +110,8 @@ FullCalendarModule.registerPlugins([
     CollabBoardComponent,
     
     InsertCompconfFileComponent,
+    
+    ViewCompconfsComponent,
     
     
     

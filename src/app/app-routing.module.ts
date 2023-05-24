@@ -25,18 +25,22 @@ import { ViewUserDeletedComponent } from './view-user-deleted/view-user-deleted.
 
 import { CollabBoardComponent } from './collab-board/collab-board.component';
 import { InsertCompconfFileComponent } from './insert-compconf-file/insert-compconf-file.component';
+import { ViewCompconfsComponent } from './view-compconfs/view-compconfs.component';
 
 const routes: Routes = [
   
    
     
-  { path: 'login', component: LoginComponent,
+{ path: 'login', component: LoginComponent,
     
 },
 { path: 'profil', component: ProfilComponent,
     
 },
 { path: 'settings', component: SettingsComponent,
+    
+},
+{ path: 'view-compconfs', component: ViewCompconfsComponent,
     
 },
 { path: 'modify-user/:id', component: ModifyUserComponent,

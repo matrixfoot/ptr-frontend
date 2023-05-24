@@ -92,7 +92,6 @@ export class InsertCompconfFileComponent implements OnInit {
         arr.push(
           {
             doctype:'compconf',
-            userId:this.currentUser.userId,
             MERCHANTIDENTIFICATION:guestList[i].substring(0,10),
             BATCHIDENTIFICATION:guestList[i].substring(10,16),
             INVOICENUMBER:guestList[i].substring(16,22),
@@ -178,7 +177,7 @@ buildData(length: number) {
     currentIndex += ITEMS_RENDERED_AT_ONCE;
   }, INTERVAL_IN_MS)
 }
-onPageChange($event) {
+/*onPageChange($event) {
   this.currentItemsToShow =  this.jsondata.slice($event.pageIndex*$event.pageSize, $event.pageIndex*$event.pageSize + $event.pageSize);
 }
 filtercompconf()
@@ -194,7 +193,7 @@ closePopup()
 {
   this.displayStyle = "none";
  
-}
+}*/
 reloadPage(): void {
   
   setTimeout(() => window.location.reload(), 3000);

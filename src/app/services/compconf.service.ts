@@ -51,17 +51,20 @@ public compconfs$ = new Subject<Compconf[]>();
     });
   }
   getcompconfs() {
-    this.http.get(API_URL_test).subscribe(
-      (compconfs: Compconf[]) => {
-        if (compconfs) {
-          this.compconfs = compconfs;
-          this.emitcompconfs();
+    return new Promise((resolve, reject) => {
+      this.http.get(API_URL_test).subscribe(
+        (compconfs: Compconf[]) => {
+          if (compconfs) {
+            this.compconfs = compconfs;
+            this.emitcompconfs();
+          }
+        },
+        (error) => {
+          console.log(error);
         }
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+      );
+    }
+    )
   }
 
   emitcompconfs() {
