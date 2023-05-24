@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 import { User } from '../models/user.model';
 import { Userdeleted } from '../models/user-deleted.model';
 const API_URL_test = 'http://localhost:3000/api/users/';
-const API_URL_cloud= 'https://rich-tan-bear-belt.cyclic.app/api/users/'
+const API_URL_cloud= 'https://ptr-backend.onrender.com/api/users/'
 @Injectable({ providedIn: 'root' })
 export class UserService {
   filtred: User[] = []

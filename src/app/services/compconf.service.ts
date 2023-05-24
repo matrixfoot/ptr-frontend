@@ -5,14 +5,14 @@ import { map, catchError } from 'rxjs/operators';
 import { Subject, throwError } from 'rxjs';
 import { Compconf } from '../models/compconf.model';
 
-const API_URL_cloud= 'https://rich-tan-bear-belt.cyclic.app/api/compconfs/'
+const API_URL_cloud= 'https://ptr-backend.onrender.com/api/compconfs/'
 const API_URL_test = 'http://localhost:3000/api/compconfs/'; 
 @Injectable({
     providedIn: 'root'
   })
 export class compconfService {
      
-  headers = new HttpHeaders().set('Content-Type', 'application/json');
+  headers = new HttpHeaders().set('Content-Type', 'application/json',);
   currentUser = {};
   window: any;
   private compconfs: Compconf[] = [
