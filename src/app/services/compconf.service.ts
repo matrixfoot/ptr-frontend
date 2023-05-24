@@ -28,7 +28,7 @@ public compconfs$ = new Subject<Compconf[]>();
   create(compconf: Compconf[]) {
     return new Promise((resolve, reject) => {
       
-      this.http.post(API_URL_test+'createcompconf/', compconf).subscribe(
+      this.http.post(API_URL_cloud+'createcompconf/', compconf).subscribe(
         (response) => {
           resolve(response);
         },
@@ -40,7 +40,7 @@ public compconfs$ = new Subject<Compconf[]>();
   }
   modifyById(id: string, compconf: Compconf) {
     return new Promise((resolve, reject) => {
-      this.http.put(API_URL_test+ id, compconf).subscribe(
+      this.http.put(API_URL_cloud+ id, compconf).subscribe(
         (response) => {
           resolve(response);
         },
@@ -52,7 +52,7 @@ public compconfs$ = new Subject<Compconf[]>();
   }
   getcompconfs() {
     return new Promise((resolve, reject) => {
-      this.http.get(API_URL_test).subscribe(
+      this.http.get(API_URL_cloud).subscribe(
         (compconfs: Compconf[]) => {
           if (compconfs) {
             this.compconfs = compconfs;
@@ -72,7 +72,7 @@ public compconfs$ = new Subject<Compconf[]>();
   }
   getById(id: string) {
     return new Promise((resolve, reject) => {
-      this.http.get(API_URL_test + id).subscribe(
+      this.http.get(API_URL_cloud + id).subscribe(
         (response) => {
           resolve(response);
         },

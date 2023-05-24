@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 import { User } from '../models/user.model';
 import { Userdeleted } from '../models/user-deleted.model';
 const API_URL_test = 'http://localhost:3000/api/users/';
-const API_URL_cloud= 'https://macompta.com.tn:3002/api/users/'
+const API_URL_cloud= 'https://rich-tan-bear-belt.cyclic.app/api/users/'
 @Injectable({ providedIn: 'root' })
 export class UserService {
   filtred: User[] = []
@@ -23,7 +23,7 @@ export class UserService {
 
     
     getAll() {
-        this.http.get(API_URL_test).subscribe(
+        this.http.get(API_URL_cloud).subscribe(
           (users: User[]) => {
             if (users) {
               this.users = users;
@@ -36,7 +36,7 @@ export class UserService {
         );
       }
       getAlldeleted() {
-        this.http.get(API_URL_test+'deletedusers/all/').subscribe(
+        this.http.get(API_URL_cloud+'deletedusers/all/').subscribe(
           (usersdeleted: Userdeleted[]) => {
             if (usersdeleted) {
               this.usersdeleted = usersdeleted;
@@ -60,7 +60,7 @@ export class UserService {
  addusers(user:User[]) {
   return new Promise((resolve, reject) => {
         
-      this.http.post(API_URL_test+'add_multiple_users', user).subscribe(
+      this.http.post(API_URL_cloud+'add_multiple_users', user).subscribe(
         (response) => {
           resolve(response);
         },
@@ -75,7 +75,7 @@ export class UserService {
         return new Promise((resolve, reject) => {
           
 
-          this.http.get(API_URL_test + id).subscribe(
+          this.http.get(API_URL_cloud + id).subscribe(
             (response) => {
               resolve(response);
             },
@@ -89,7 +89,7 @@ export class UserService {
         return new Promise((resolve, reject) => {
           
 
-          this.http.get(API_URL_test + 'deleteduser/'+id).subscribe(
+          this.http.get(API_URL_cloud + 'deleteduser/'+id).subscribe(
             (response) => {
               resolve(response);
             },
@@ -111,7 +111,7 @@ export class UserService {
             userData.append('user', JSON.stringify(user));
             userData.append('image', image, user.email);
           }
-          this.http.put(API_URL_test + id, userData).subscribe(
+          this.http.put(API_URL_cloud + id, userData).subscribe(
             (response) => {
               resolve(response);
             },
@@ -127,7 +127,7 @@ export class UserService {
           
             
           
-          this.http.put(API_URL_test+ id, user).subscribe(
+          this.http.put(API_URL_cloud+ id, user).subscribe(
             (response) => {
               resolve(response);
             },
@@ -142,7 +142,7 @@ export class UserService {
           
             
           
-          this.http.put(API_URL_test+'complete/'+id, user).subscribe(
+          this.http.put(API_URL_cloud+'complete/'+id, user).subscribe(
             (response) => {
               resolve(response);
             },
@@ -157,7 +157,7 @@ export class UserService {
           
             
           
-          this.http.put(API_URL_test+'desactivate/'+id, user).subscribe(
+          this.http.put(API_URL_cloud+'desactivate/'+id, user).subscribe(
             (response) => {
               resolve(response);
             },
@@ -169,7 +169,7 @@ export class UserService {
       }
       liberateUser(id: string, user: User) {
         return new Promise((resolve, reject) => { 
-          this.http.put(API_URL_test+'nostandby/'+id, user).subscribe(
+          this.http.put(API_URL_cloud+'nostandby/'+id, user).subscribe(
             (response) => {
               resolve(response);
             },
@@ -184,7 +184,7 @@ export class UserService {
           
             
           
-          this.http.delete(API_URL_test+'temporardelete/'+id).subscribe(
+          this.http.delete(API_URL_cloud+'temporardelete/'+id).subscribe(
             (response) => {
               resolve(response);
             },
@@ -199,7 +199,7 @@ export class UserService {
           
             
           
-          this.http.delete(API_URL_test+'restaure/'+id).subscribe(
+          this.http.delete(API_URL_cloud+'restaure/'+id).subscribe(
             (response) => {
               resolve(response);
             },
@@ -214,7 +214,7 @@ export class UserService {
           
             
           
-          this.http.put(API_URL_test+'activate/'+id, user).subscribe(
+          this.http.put(API_URL_cloud+'activate/'+id, user).subscribe(
             (response) => {
               resolve(response);
             },
@@ -226,7 +226,7 @@ export class UserService {
       }
       standbyUser(id: string, user: User) {
         return new Promise((resolve, reject) => {
-          this.http.put(API_URL_test+'standby/'+id, user).subscribe(
+          this.http.put(API_URL_cloud+'standby/'+id, user).subscribe(
             (response) => {
               resolve(response);
             },
@@ -241,7 +241,7 @@ export class UserService {
           
             
           
-          this.http.put(API_URL_test+'connect/'+id, user).subscribe(
+          this.http.put(API_URL_cloud+'connect/'+id, user).subscribe(
             (response) => {
               resolve(response);
             },
@@ -256,7 +256,7 @@ export class UserService {
           
             
           
-          this.http.put(API_URL_test+'disconnect/'+id, user).subscribe(
+          this.http.put(API_URL_cloud+'disconnect/'+id, user).subscribe(
             (response) => {
               resolve(response);
             },
@@ -268,7 +268,7 @@ export class UserService {
       }
     deleteUserById(id: string) {
       return new Promise((resolve, reject) => {
-        this.http.delete(API_URL_test+ id).subscribe(
+        this.http.delete(API_URL_cloud+ id).subscribe(
           (response) => {
             resolve(response);
           },
@@ -281,7 +281,7 @@ export class UserService {
     verifyEmail(token: string) 
     {
       return new Promise((resolve, reject) => {
-        this.http.post(API_URL_test+ 'verify-email', { token }).subscribe(
+        this.http.post(API_URL_cloud+ 'verify-email', { token }).subscribe(
           (response) => {
             resolve(response);
           },
@@ -295,7 +295,7 @@ export class UserService {
     forgotPassword(email: string) 
   {
     return new Promise((resolve, reject) => {
-      this.http.post(API_URL_test+ 'forgot-password', { email }).subscribe(
+      this.http.post(API_URL_cloud+ 'forgot-password', { email }).subscribe(
         (response) => {
           resolve(response);
         },
@@ -309,7 +309,7 @@ export class UserService {
   validateResetToken(token: string) 
   {
     return new Promise((resolve, reject) => {
-      this.http.post(API_URL_test+ 'validate-reset-token', { token }).subscribe(
+      this.http.post(API_URL_cloud+ 'validate-reset-token', { token }).subscribe(
         (response) => {
           resolve(response);
         },
@@ -324,7 +324,7 @@ export class UserService {
 
   {
     return new Promise((resolve, reject) => {
-      this.http.post(API_URL_test+ 'reset-password', { token, password, confirmPassword }).subscribe(
+      this.http.post(API_URL_cloud+ 'reset-password', { token, password, confirmPassword }).subscribe(
         (response) => {
           resolve(response);
         },
@@ -337,7 +337,7 @@ export class UserService {
   getuserbyfirstname(firstname: string) 
   {
     
-      this.http.post(API_URL_test+ 'filteruserfirstname', { firstname }).subscribe(
+      this.http.post(API_URL_cloud+ 'filteruserfirstname', { firstname }).subscribe(
         (users: User[]) => {
           if (users) {
             this.users = users;
@@ -353,7 +353,7 @@ export class UserService {
   getuserbylastname(lastname: string) 
   {
     
-      this.http.post(API_URL_test+ 'filteruserlastname', { lastname }).subscribe(
+      this.http.post(API_URL_cloud+ 'filteruserlastname', { lastname }).subscribe(
         (users: User[]) => {
           if (users) {
             this.users = users;
@@ -369,7 +369,7 @@ export class UserService {
   getuserbyemail(email: string) 
   {
     
-      this.http.post(API_URL_test+ 'filteruseremail', { email }).subscribe(
+      this.http.post(API_URL_cloud+ 'filteruseremail', { email }).subscribe(
         (users: User[]) => {
           if (users) {
             this.users = users;
