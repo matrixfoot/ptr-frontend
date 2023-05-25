@@ -14,7 +14,6 @@
                 <input type="file"  class="form-control inputFile" (change)="onFileChange2($event);">
               </div>
           </div>
-          <button class="btn btn-success" (click)="save()"> <i class="fa fa-refresh fa-spin" *ngIf="loading"></i>Valider</button>
         </fieldset>
       <p>{{ errormsg }}</p> 
     </div>
@@ -76,6 +75,7 @@
                   <p>{{ errormsg }}</p> 
                 </div>
                 </div>
+                <button class="btn btn-success" (click)="save()"> <i class="fa fa-refresh fa-spin" *ngIf="loading"></i>Valider</button>
   <!--<div class="users-grid"  style="overflow-x:auto;overflow-y: auto;height: 600px;">
     <table class="table table-striped">
       <thead>

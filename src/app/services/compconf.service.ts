@@ -37,7 +37,7 @@ public worksmss$ = new Subject<Worksms[]>();
   createcompconf(compconf: Compconf[]) {
     return new Promise((resolve, reject) => {
       
-      this.http.post(API_URL_cloud+'createcompconf/', compconf).subscribe(
+      this.http.post(API_URL_test+'createcompconf/', compconf).subscribe(
         (response) => {
           resolve(response);
         },
@@ -49,7 +49,7 @@ public worksmss$ = new Subject<Worksms[]>();
   }
   modifycompconfById(id: string, compconf: Compconf) {
     return new Promise((resolve, reject) => {
-      this.http.put(API_URL_cloud+ id, compconf).subscribe(
+      this.http.put(API_URL_test+ id, compconf).subscribe(
         (response) => {
           resolve(response);
         },
@@ -81,7 +81,7 @@ public worksmss$ = new Subject<Worksms[]>();
   }
   getcompconfById(id: string) {
     return new Promise((resolve, reject) => {
-      this.http.get(API_URL_cloud + id).subscribe(
+      this.http.get(API_URL_test + id).subscribe(
         (response) => {
           resolve(response);
         },
@@ -93,7 +93,7 @@ public worksmss$ = new Subject<Worksms[]>();
   }
   deletecompconfById(id: string) {
     return new Promise((resolve, reject) => {
-      this.http.delete(API_URL_cloud+ id).subscribe(
+      this.http.delete(API_URL_test+ id).subscribe(
         (response) => {
           resolve(response);
         },
@@ -105,7 +105,7 @@ public worksmss$ = new Subject<Worksms[]>();
   }  
   deletecompconfs() {
     return new Promise((resolve, reject) => {
-      this.http.delete(API_URL_cloud).subscribe(
+      this.http.delete(API_URL_test).subscribe(
         (response) => {
           resolve(response);
         },
@@ -121,7 +121,7 @@ public worksmss$ = new Subject<Worksms[]>();
   createworkgab(Workgab: Workgab[]) {
     return new Promise((resolve, reject) => {
       
-      this.http.post(API_URL_cloud+'createWorkgab/', Workgab).subscribe(
+      this.http.post(API_URL_test+'createWorkgab/', Workgab).subscribe(
         (response) => {
           resolve(response);
         },
@@ -133,7 +133,7 @@ public worksmss$ = new Subject<Worksms[]>();
   }
   modifyworgabById(id: string, Workgab: Workgab) {
     return new Promise((resolve, reject) => {
-      this.http.put(API_URL_cloud+ id, Workgab).subscribe(
+      this.http.put(API_URL_test+ id, Workgab).subscribe(
         (response) => {
           resolve(response);
         },
@@ -165,7 +165,7 @@ public worksmss$ = new Subject<Worksms[]>();
   }
   getworgabById(id: string) {
     return new Promise((resolve, reject) => {
-      this.http.get(API_URL_cloud + id).subscribe(
+      this.http.get(API_URL_test + id).subscribe(
         (response) => {
           resolve(response);
         },
@@ -177,7 +177,7 @@ public worksmss$ = new Subject<Worksms[]>();
   }
   deleteworkgabById(id: string) {
     return new Promise((resolve, reject) => {
-      this.http.delete(API_URL_cloud+ id).subscribe(
+      this.http.delete(API_URL_test+ id).subscribe(
         (response) => {
           resolve(response);
         },
@@ -189,7 +189,7 @@ public worksmss$ = new Subject<Worksms[]>();
   }  
   deleteWorkgabs() {
     return new Promise((resolve, reject) => {
-      this.http.delete(API_URL_cloud).subscribe(
+      this.http.delete(API_URL_test).subscribe(
         (response) => {
           resolve(response);
         },
@@ -204,7 +204,7 @@ public worksmss$ = new Subject<Worksms[]>();
   createworkpos(Workpos: Workpos[]) {
     return new Promise((resolve, reject) => {
       
-      this.http.post(API_URL_cloud+'createWorkpos/', Workpos).subscribe(
+      this.http.post(API_URL_test+'createWorkpos/', Workpos).subscribe(
         (response) => {
           resolve(response);
         },
@@ -216,7 +216,7 @@ public worksmss$ = new Subject<Worksms[]>();
   }
   modifyworkposById(id: string, Workpos: Workpos) {
     return new Promise((resolve, reject) => {
-      this.http.put(API_URL_cloud+ id, Workpos).subscribe(
+      this.http.put(API_URL_test+ id, Workpos).subscribe(
         (response) => {
           resolve(response);
         },
@@ -248,7 +248,7 @@ public worksmss$ = new Subject<Worksms[]>();
   }
   getworkposById(id: string) {
     return new Promise((resolve, reject) => {
-      this.http.get(API_URL_cloud + id).subscribe(
+      this.http.get(API_URL_test + id).subscribe(
         (response) => {
           resolve(response);
         },
@@ -260,7 +260,7 @@ public worksmss$ = new Subject<Worksms[]>();
   }
   deleteworkposById(id: string) {
     return new Promise((resolve, reject) => {
-      this.http.delete(API_URL_cloud+ id).subscribe(
+      this.http.delete(API_URL_test+ id).subscribe(
         (response) => {
           resolve(response);
         },
@@ -272,7 +272,7 @@ public worksmss$ = new Subject<Worksms[]>();
   }  
   deleteWorkposs() {
     return new Promise((resolve, reject) => {
-      this.http.delete(API_URL_cloud).subscribe(
+      this.http.delete(API_URL_test).subscribe(
         (response) => {
           resolve(response);
         },
@@ -288,7 +288,7 @@ public worksmss$ = new Subject<Worksms[]>();
   createworksms(Worksms: Worksms[]) {
     return new Promise((resolve, reject) => {
       
-      this.http.post(API_URL_cloud+'createWorksms/', Worksms).subscribe(
+      this.http.post(API_URL_test+'createWorksms/', Worksms).subscribe(
         (response) => {
           resolve(response);
         },
@@ -300,7 +300,7 @@ public worksmss$ = new Subject<Worksms[]>();
   }
   modifyworksmsById(id: string, Worksms: Worksms) {
     return new Promise((resolve, reject) => {
-      this.http.put(API_URL_cloud+ id, Worksms).subscribe(
+      this.http.put(API_URL_test+ id, Worksms).subscribe(
         (response) => {
           resolve(response);
         },
@@ -332,7 +332,7 @@ public worksmss$ = new Subject<Worksms[]>();
   }
   getworksmsById(id: string) {
     return new Promise((resolve, reject) => {
-      this.http.get(API_URL_cloud + id).subscribe(
+      this.http.get(API_URL_test + id).subscribe(
         (response) => {
           resolve(response);
         },
@@ -344,7 +344,7 @@ public worksmss$ = new Subject<Worksms[]>();
   }
   deleteworksmsById(id: string) {
     return new Promise((resolve, reject) => {
-      this.http.delete(API_URL_cloud+ id).subscribe(
+      this.http.delete(API_URL_test+ id).subscribe(
         (response) => {
           resolve(response);
         },
@@ -356,7 +356,7 @@ public worksmss$ = new Subject<Worksms[]>();
   }  
   deleteWorksmss() {
     return new Promise((resolve, reject) => {
-      this.http.delete(API_URL_cloud).subscribe(
+      this.http.delete(API_URL_test).subscribe(
         (response) => {
           resolve(response);
         },

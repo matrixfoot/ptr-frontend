@@ -36,9 +36,9 @@ export class InsertCompconfFileComponent implements OnInit {
   file4: any;
   uploadEvent4: any;
   displaysearch4: string;
-  currentItemsToShow2: any;
-  currentItemsToShow3: any;
-  currentItemsToShow4: any;
+  currentItemsToShow2: any=[];
+  currentItemsToShow3: any=[];
+  currentItemsToShow4: any=[];
   public get inverseOfTranslation(): string {
     if (!this.viewPort || !this.viewPort["_renderedContentOffset"]) {
       return "-0px";
@@ -304,20 +304,28 @@ export class InsertCompconfFileComponent implements OnInit {
             MERCHANTIDENTIFICATION:guestList[i].substring(15,25),
             BATCHSEQUENCENUMBER2:guestList[i].substring(25,31),
             DRAFTNUMBER:guestList[i].substring(31,37),
-            MERCHANTACCOUNTNUMBER:guestList[i].substring(37,61),
-            BATCHAMOUNT:guestList[i].substring(61,70),
-            CURRENCYCODE:guestList[i].substring(70,73),
-            FILLER:guestList[i].substring(73,81),
-            TERMINALIDENTIFICATION:guestList[i].substring(81,91),
-            FILLER2:guestList[i].substring(91,100),
-            BATCHTRANSACTIONCOUNTER:guestList[i].substring(100,106),
-            BATCHPROCESSINGDATE:guestList[i].substring(106,112),
-            OPERATIONCODE:guestList[i].substring(112,113),
-            FILLER3:guestList[i].substring(113,129),
-            TERMINALTYPE:guestList[i].substring(129,130),
-            FILLER4:guestList[i].substring(130,145),
-            MERCHANTNAME:guestList[i].substring(145,159),
-            BATCHTRAILERINDICATOR:guestList[i].substring(159,160),
+            CARDHOLDERNUMBER:guestList[i].substring(37,56),
+            FILLER:guestList[i].substring(56,60),
+            TRANSACTIONAMOUNT:guestList[i].substring(60,69),
+            FILLER2:guestList[i].substring(69,81),
+            TERMINALINVOICENUMBER:guestList[i].substring(81,91),
+            TRANSACTIONTIME:guestList[i].substring(91,95),
+            CARDEXPIRYDATE:guestList[i].substring(95,99),
+            AUTHORIZATIONCODE:guestList[i].substring(99,105),
+            TRANSACTIONDATE:guestList[i].substring(105,111),
+            SETTLEMENTAMOUNT:guestList[i].substring(111,120),
+            FILLER3:guestList[i].substring(120,125),
+            TERMINALTYPE:guestList[i].substring(125,126),
+            ISSUERBANKCODE:guestList[i].substring(126,130),
+            FILLER4:guestList[i].substring(130,134),
+            OPERATIONCODE:guestList[i].substring(134,135),
+            ACQUIRERBANKCODE:guestList[i].substring(135,139),
+            FILLER5:guestList[i].substring(139,151),
+            CURRENCYCODE:guestList[i].substring(151,154),
+            FILLER6:guestList[i].substring(154,156),
+            TERMINALTYPE2:guestList[i].substring(156,157),
+            FILLER7:guestList[i].substring(157,159),
+            TRANSTRAILERID:guestList[i].substring(159,160),
           }
           );
         console.log(arr);
