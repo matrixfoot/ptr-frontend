@@ -19,6 +19,63 @@
       <p>{{ errormsg }}</p> 
     </div>
     </div>
+       <!-- add work GAB -->
+       <div class="input-container" id="Check2">
+        <label for="myCheck2">Afficher le formulaire d'ajout de work gab</label>
+        <input type="checkbox" id="myCheck2" (click)="myFunction2()">
+      </div>
+      <div id="bodycontainer2">
+        <div class="container-fluid"> 
+          <fieldset>
+            <legend> Insérer fichier work GAB</legend>
+            <div class="form-group row">
+              <label class="col-sm-12 col-form-label"> Charger document</label>
+                <div class="col-sm-12">
+                  <input type="file"  class="form-control inputFile" (change)="onFileChange3($event);">
+                </div>
+            </div>
+          </fieldset>
+        <p>{{ errormsg }}</p> 
+      </div>
+      </div>
+             <!-- add work POS -->
+             <div class="input-container" id="Check3">
+              <label for="myCheck3">Afficher le formulaire d'ajout de work pos</label>
+              <input type="checkbox" id="myCheck3" (click)="myFunction3()">
+            </div>
+            <div id="bodycontainer3">
+              <div class="container-fluid"> 
+                <fieldset>
+                  <legend> Insérer fichier work POS</legend>
+                  <div class="form-group row">
+                    <label class="col-sm-12 col-form-label"> Charger document</label>
+                      <div class="col-sm-12">
+                        <input type="file"  class="form-control inputFile" (change)="onFileChange4($event);">
+                      </div>
+                  </div>
+                </fieldset>
+              <p>{{ errormsg }}</p> 
+            </div>
+            </div>
+                 <!-- add work SMS -->
+                 <div class="input-container" id="Check4">
+                  <label for="myCheck4">Afficher le formulaire d'ajout de work sms</label>
+                  <input type="checkbox" id="myCheck4" (click)="myFunction4()">
+                </div>
+                <div id="bodycontainer4">
+                  <div class="container-fluid"> 
+                    <fieldset>
+                      <legend> Insérer fichier work sms</legend>
+                      <div class="form-group row">
+                        <label class="col-sm-12 col-form-label"> Charger document</label>
+                          <div class="col-sm-12">
+                            <input type="file"  class="form-control inputFile" (change)="onFileChange5($event);">
+                          </div>
+                      </div>
+                    </fieldset>
+                  <p>{{ errormsg }}</p> 
+                </div>
+                </div>
   <!--<div class="users-grid"  style="overflow-x:auto;overflow-y: auto;height: 600px;">
     <table class="table table-striped">
       <thead>

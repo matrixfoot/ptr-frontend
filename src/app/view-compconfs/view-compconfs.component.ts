@@ -35,6 +35,7 @@ export class ViewCompconfsComponent implements OnInit {
   public users: User[] = [];
   public compconfs: Compconf[] = [];
   compconfsSub: Subscription;
+  showitems:false
   currentItemsToShow: any=[];
   filtreditems: any=[];
   optionValue: any;
@@ -51,12 +52,12 @@ export class ViewCompconfsComponent implements OnInit {
       (compconfs) => {
         this.compconfs = compconfs;
         this.loading = false;
+        this.currentItemsToShow=this.compconfs.slice(0,100)
       },
       (error) => {
         this.loading = false;
       }
     );
-    console.log(this.currentUser)
     this.token.getToken()?this.getallcompconfs():''
   }
   getallcompconfs() {                                            
