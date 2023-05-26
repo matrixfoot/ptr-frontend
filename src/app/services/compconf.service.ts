@@ -37,7 +37,7 @@ public worksmss$ = new Subject<Worksms[]>();
   createcompconf(compconf: Compconf[]) {
     return new Promise((resolve, reject) => {
       
-      this.http.post(API_URL_cloud+'createcompconf/', compconf).subscribe(
+      this.http.post(API_URL_test+'createcompconf/', compconf).subscribe(
         (response) => {
           resolve(response);
         },
@@ -121,7 +121,7 @@ public worksmss$ = new Subject<Worksms[]>();
   createworkgab(Workgab: Workgab[]) {
     return new Promise((resolve, reject) => {
       
-      this.http.post(API_URL_cloud+'createWorkgab/', Workgab).subscribe(
+      this.http.post(API_URL_test+'createWorkgab/', Workgab).subscribe(
         (response) => {
           resolve(response);
         },
@@ -204,7 +204,7 @@ public worksmss$ = new Subject<Worksms[]>();
   createworkpos(Workpos: Workpos[]) {
     return new Promise((resolve, reject) => {
       
-      this.http.post(API_URL_cloud+'createWorkpos/', Workpos).subscribe(
+      this.http.post(API_URL_test+'createWorkpos/', Workpos).subscribe(
         (response) => {
           resolve(response);
         },
@@ -288,7 +288,7 @@ public worksmss$ = new Subject<Worksms[]>();
   createworksms(Worksms: Worksms[]) {
     return new Promise((resolve, reject) => {
       
-      this.http.post(API_URL_cloud+'createWorksms/', Worksms).subscribe(
+      this.http.post(API_URL_test+'createWorksms/', Worksms).subscribe(
         (response) => {
           resolve(response);
         },
