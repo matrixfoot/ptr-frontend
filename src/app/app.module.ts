@@ -62,6 +62,9 @@ import { InsertCompconfFileComponent } from './insert-compconf-file/insert-compc
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ViewCompconfsComponent } from './view-compconfs/view-compconfs.component';
+import { ViewWorkgabComponent } from './view-workgab/view-workgab.component';
+import { ViewWorkposComponent } from './view-workpos/view-workpos.component';
+import { ViewWorksmsComponent } from './view-worksms/view-worksms.component';
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -112,6 +115,12 @@ FullCalendarModule.registerPlugins([
     InsertCompconfFileComponent,
     
     ViewCompconfsComponent,
+    
+    ViewWorkgabComponent,
+    
+    ViewWorkposComponent,
+    
+    ViewWorksmsComponent,
     
     
     

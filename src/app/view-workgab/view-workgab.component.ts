@@ -4,20 +4,20 @@ import { concat, Subscription } from 'rxjs';
 import { User } from '../models/user.model';
 import { Decfiscmens } from '../models/dec-fisc-mens';
 import { Router } from '@angular/router';
-import { Compconf } from '../models/compconf.model';
+import { Workgab } from '../models/workgab.model';
 import { compconfService } from '../services/compconf.service';
-
 import { FormBuilder } from '@angular/forms';
 import { CommunService } from '../services/commun';
 import { ExcelService } from '../services/excel.service';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { TokenStorageService } from '../services/token-storage.service';
 @Component({
-  selector: 'app-view-compconfs',
-  templateUrl: './view-compconfs.component.html',
-  styleUrls: ['./view-compconfs.component.scss']
+  selector: 'app-view-workgab',
+  templateUrl: './view-workgab.component.html',
+  styleUrls: ['./view-workgab.component.scss']
 })
-export class ViewCompconfsComponent implements OnInit {
+export class ViewWorkgabComponent implements OnInit {
+
   @ViewChild(CdkVirtualScrollViewport, {static: false})
   public viewPort: CdkVirtualScrollViewport;
   displayStyle: string;
@@ -33,7 +33,7 @@ export class ViewCompconfsComponent implements OnInit {
   currentUser: User;
   public loading: boolean;
   public users: User[] = [];
-  public compconfs: Compconf[] = [];
+  public workgabs: Workgab[] = [];
   compconfsSub: Subscription;
   showitems:false
   currentItemsToShow: any=[];
@@ -48,24 +48,23 @@ export class ViewCompconfsComponent implements OnInit {
   ngOnInit() {
     this.loading=true
     this.currentUser = this.token.getUser();
-    this.compconfsSub = this.com.compconfs$.subscribe(
-      (compconfs) => {
-        this.compconfs = compconfs;
+    this.compconfsSub = this.com.workgabs$.subscribe(
+      (workgabs) => {
+        this.workgabs = workgabs;
         this.loading = false;
-        this.currentItemsToShow=this.compconfs.slice(0,100)
-        this.compconfs.length>0?this.displaysearch="block":''
+        this.currentItemsToShow=this.workgabs.slice(0,100)
       },
       (error) => {
         this.loading = false;
       }
     );
-    this.token.getToken()?this.getallcompconfs():''
+    this.token.getToken()?this.getallworkgabs():''
   }
-  getallcompconfs() {                                            
-    this.com.getcompconfs().then(
+  getallworkgabs() {                                            
+    this.com.getWorkgabs().then(
       (data:any) => {
         this.loading = false;
-        this.buildData(this.compconfs.length)
+        this.buildData(this.workgabs.length)
       },
       (error) => {
         this.loading = false;    
@@ -87,16 +86,16 @@ export class ViewCompconfsComponent implements OnInit {
         break;
       }
       this.currentItemsToShow.push(
-        this.compconfs[n]
+        this.workgabs[n]
       )
     }
     currentIndex += ITEMS_RENDERED_AT_ONCE;
   }, INTERVAL_IN_MS)
 }
 onPageChange($event) {
-  this.currentItemsToShow =  this.compconfs.slice($event.pageIndex*$event.pageSize, $event.pageIndex*$event.pageSize + $event.pageSize);
+  this.currentItemsToShow =  this.workgabs.slice($event.pageIndex*$event.pageSize, $event.pageIndex*$event.pageSize + $event.pageSize);
 }
-filtercompconf()
+filterworkgabs()
 {
   this.displayStyle = "none";
   this.filtreditems.push(
@@ -110,4 +109,5 @@ closePopup()
   this.displayStyle = "none";
  
 }
+
 }

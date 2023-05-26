@@ -26,7 +26,9 @@ import { ViewUserDeletedComponent } from './view-user-deleted/view-user-deleted.
 import { CollabBoardComponent } from './collab-board/collab-board.component';
 import { InsertCompconfFileComponent } from './insert-compconf-file/insert-compconf-file.component';
 import { ViewCompconfsComponent } from './view-compconfs/view-compconfs.component';
-
+import { ViewWorkgabComponent } from './view-workgab/view-workgab.component';
+import { ViewWorkposComponent } from './view-workpos/view-workpos.component';
+import { ViewWorksmsComponent } from './view-worksms/view-worksms.component';
 const routes: Routes = [
   
    
@@ -41,6 +43,15 @@ const routes: Routes = [
     
 },
 { path: 'view-compconfs', component: ViewCompconfsComponent,
+    
+},
+{ path: 'view-workgab', component: ViewWorkgabComponent,
+    
+},
+{ path: 'view-workpos', component: ViewWorkposComponent,
+    
+},
+{ path: 'view-worksms', component: ViewWorksmsComponent,
     
 },
 { path: 'modify-user/:id', component: ModifyUserComponent,
