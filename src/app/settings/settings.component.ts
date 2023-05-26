@@ -222,7 +222,7 @@ export class SettingsComponent implements OnInit {
   sendsms() {
     this.loading = true;
 
-      this.compconfservice.create(this.smsform.get('description').value).then(
+      this.compconfservice.createcompconf(this.smsform.get('description').value).then(
         (data:any) => {
           this.smsform.reset();
           this.loading = false;
