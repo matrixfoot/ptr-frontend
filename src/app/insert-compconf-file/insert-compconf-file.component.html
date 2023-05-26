@@ -75,7 +75,7 @@
                   <p>{{ errormsg }}</p> 
                 </div>
                 </div>
-                <button class="btn btn-success" (click)="save()"> <i class="fa fa-refresh fa-spin" *ngIf="loading"></i>Valider</button>
+                <button class="btn btn-success" (click)="save()"*ngIf="currentItemsToShow.length>0||currentItemsToShow2.length>0||currentItemsToShow3.length>0||currentItemsToShow4.length>0"> <i class="fa fa-refresh fa-spin" *ngIf="loading"></i>Valider</button>
   <!--<div class="users-grid"  style="overflow-x:auto;overflow-y: auto;height: 600px;">
     <table class="table table-striped">
       <thead>
