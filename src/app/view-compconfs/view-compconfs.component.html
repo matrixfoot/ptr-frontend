@@ -140,8 +140,8 @@
           <td><button type="button" class="btn btn-danger" (click)="onDelete(carousel._id)">Supprimer</button></td>          
         </tr>
       </tbody>-->
-      <tbody *ngIf="currentItemsToShow.length>0">
-      <tr *cdkVirtualFor="let comp of currentItemsToShow">
+      <tbody *ngIf="currentItemsToShownormal.length>0">
+      <tr *cdkVirtualFor="let comp of currentItemsToShownormal">
         <td>{{comp.MERCHANTIDENTIFICATION}}</td>
               
                 <td>{{comp.CARDHOLDERNUMBER}}</td>
@@ -162,7 +162,115 @@
         <td><button type="button" class="btn btn-danger" (click)="onDelete(carousel._id)">Supprimer</button></td>          
       </tr>
       </tbody>
-    </table>       
+    </table> 
+   
+   
    </cdk-virtual-scroll-viewport>
+   <cdk-virtual-scroll-viewport #scrollViewport itemSize="50">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col" [style.top]="inverseOfTranslation">Motif CHB</th>  
+        <th scope="col" [style.top]="inverseOfTranslation">Cycle CHB</th>
+        <th scope="col" [style.top]="inverseOfTranslation">MESSAGE</th>
+      </tr>
+      </thead>
+      <!--<tbody *ngIf="filtreditems.length>0">
+        <tr *ngFor="let comp of filtreditems">
+          <td>{{comp.MERCHANTIDENTIFICATION}}</td>
+          <td>{{comp.BATCHIDENTIFICATION}}</td>
+          <td>{{comp.INVOICENUMBER}}</td>
+          <td>{{comp.CARDHOLDERNUMBER}}</td>
+          <td>{{comp.MERCHANTSECTOR}}</td>
+          <td>{{comp.CHANNELTRANSACTIONID}}</td>
+          <td>{{comp.OPERATIONCODE}}</td>
+          <td>{{comp.TRANSACTIONCODE}}</td>
+          <td>{{comp.TRANSACTIONAMOUNT}}</td>
+          <td>{{comp.CARDEXPIRYDATE}}</td>
+          <td>{{comp.PROCESSINGDATE}}</td>
+          <td>{{comp.TRANSACTIONDATE}}</td>
+          <td>{{comp.AUTHORIZATIONCODE}}</td>
+          <td>{{comp.REMITTANCEDATE}}</td>
+          <td>{{comp.MERCHANTCATEGORIECODE}}</td>
+          <td>{{comp.FILLER}}</td>
+          <td>{{comp.ACQUIRERBANKIDENTIFICATION}}</td>
+          <td>{{comp.LOCALCARDSYSTEMNETWORK}}</td>
+          <td>{{comp.ISSUERBANKIDENTIFICATION}}</td>
+          <td>{{comp.ACQUIRERREFERENCENUMBER}}</td>
+          <td>{{comp.TRANSACTIONORDERUSAGECODE}}</td>
+          <td>{{comp.MERCHANTNAME}}</td>
+          <td>{{comp.SETTLEMENTAMOUNT}}</td>
+          <td>{{comp.FILLER2}}</td>
+          <td>{{comp.ENDOFRECORD}}</td>
+          <td><button type="button" class="btn btn-success" (click)="getNavigation('view-carousel',carousel._id)">Consulter</button></td>
+          <td><button type="button" class="btn btn-primary" (click)="getNavigation('modify-carousel',carousel._id)">Modifier</button></td>
+          <td><button type="button" class="btn btn-danger" (click)="onDelete(carousel._id)">Supprimer</button></td>          
+        </tr>
+      </tbody>-->
+      <tbody *ngIf="currentItemsToShowchargeback.length>0">
+      <tr *cdkVirtualFor="let comp of currentItemsToShowchargeback">
+                <td>{{comp.CHARGEBACKREASONCODE}}</td>
+                <td>{{comp.CHARGEBACKTRANSACTIONCYCLE}}</td>
+                <td>{{comp.MESSAGE}}</td>
+        <td><button type="button" class="btn btn-success" (click)="getNavigation('view-carousel',carousel._id)">Consulter</button></td>
+        <td><button type="button" class="btn btn-primary" (click)="getNavigation('modify-carousel',carousel._id)">Modifier</button></td>
+        <td><button type="button" class="btn btn-danger" (click)="onDelete(carousel._id)">Supprimer</button></td>          
+      </tr>
+      </tbody>
+    </table> 
+    </cdk-virtual-scroll-viewport>
+    <cdk-virtual-scroll-viewport #scrollViewport itemSize="50">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col" [style.top]="inverseOfTranslation">Motif CHB</th>  
+          <th scope="col" [style.top]="inverseOfTranslation">Cycle CHB</th>
+          <th scope="col" [style.top]="inverseOfTranslation">MESSAGE</th>
+        </tr>
+        </thead>
+        <!--<tbody *ngIf="filtreditems.length>0">
+          <tr *ngFor="let comp of filtreditems">
+            <td>{{comp.MERCHANTIDENTIFICATION}}</td>
+            <td>{{comp.BATCHIDENTIFICATION}}</td>
+            <td>{{comp.INVOICENUMBER}}</td>
+            <td>{{comp.CARDHOLDERNUMBER}}</td>
+            <td>{{comp.MERCHANTSECTOR}}</td>
+            <td>{{comp.CHANNELTRANSACTIONID}}</td>
+            <td>{{comp.OPERATIONCODE}}</td>
+            <td>{{comp.TRANSACTIONCODE}}</td>
+            <td>{{comp.TRANSACTIONAMOUNT}}</td>
+            <td>{{comp.CARDEXPIRYDATE}}</td>
+            <td>{{comp.PROCESSINGDATE}}</td>
+            <td>{{comp.TRANSACTIONDATE}}</td>
+            <td>{{comp.AUTHORIZATIONCODE}}</td>
+            <td>{{comp.REMITTANCEDATE}}</td>
+            <td>{{comp.MERCHANTCATEGORIECODE}}</td>
+            <td>{{comp.FILLER}}</td>
+            <td>{{comp.ACQUIRERBANKIDENTIFICATION}}</td>
+            <td>{{comp.LOCALCARDSYSTEMNETWORK}}</td>
+            <td>{{comp.ISSUERBANKIDENTIFICATION}}</td>
+            <td>{{comp.ACQUIRERREFERENCENUMBER}}</td>
+            <td>{{comp.TRANSACTIONORDERUSAGECODE}}</td>
+            <td>{{comp.MERCHANTNAME}}</td>
+            <td>{{comp.SETTLEMENTAMOUNT}}</td>
+            <td>{{comp.FILLER2}}</td>
+            <td>{{comp.ENDOFRECORD}}</td>
+            <td><button type="button" class="btn btn-success" (click)="getNavigation('view-carousel',carousel._id)">Consulter</button></td>
+            <td><button type="button" class="btn btn-primary" (click)="getNavigation('modify-carousel',carousel._id)">Modifier</button></td>
+            <td><button type="button" class="btn btn-danger" (click)="onDelete(carousel._id)">Supprimer</button></td>          
+          </tr>
+        </tbody>-->
+        <tbody *ngIf="currentItemsToShowsecond.length>0">
+        <tr *cdkVirtualFor="let comp of currentItemsToShowsecond">
+                  <td>{{comp.CHARGEBACKREASONCODE}}</td>
+                  <td>{{comp.ndPRESENTMENTTRANSACTIONCYCLE}}</td>
+                  <td>{{comp.PRESENTMENTINDICATOR}}</td>
+          <td><button type="button" class="btn btn-success" (click)="getNavigation('view-carousel',carousel._id)">Consulter</button></td>
+          <td><button type="button" class="btn btn-primary" (click)="getNavigation('modify-carousel',carousel._id)">Modifier</button></td>
+          <td><button type="button" class="btn btn-danger" (click)="onDelete(carousel._id)">Supprimer</button></td>          
+        </tr>
+        </tbody>
+      </table> 
+    </cdk-virtual-scroll-viewport>
 </div>
  

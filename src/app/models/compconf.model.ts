@@ -29,6 +29,12 @@ export class Compconf {
             TRANSACTIONTIME:string;
             FILLER2:string;
             ENDOFRECORD:string;
+            CHARGEBACKREASONCODE:string;
+            CHARGEBACKTRANSACTIONCYCLE:string;
+            MESSAGE:string;
+            ndPRESENTMENTREASONCODE:string;
+            ndPRESENTMENTTRANSACTIONCYCLE:string;
+            PRESENTMENTINDICATOR:string;
     created:Date; 
     updated: Date
 }

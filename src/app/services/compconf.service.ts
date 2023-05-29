@@ -61,7 +61,7 @@ public worksmss$ = new Subject<Worksms[]>();
   }
   getcompconfs() {
     return new Promise((resolve, reject) => {
-      this.http.get(API_URL_cloud+'allcompconf/').subscribe(
+      this.http.get(API_URL_test+'allcompconf/').subscribe(
         (compconfs: Compconf[]) => {
           if (compconfs) {
             this.compconfs = compconfs;

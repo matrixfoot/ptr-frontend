@@ -23,6 +23,12 @@ export class ViewCompconfsComponent implements OnInit {
   displayStyle: string;
   settedfiltreditems: any[]=[];
   displaysearch='none';
+  compconfsnormal: Compconf[];
+  compconfssecond: Compconf[];
+  compconfschargeback: Compconf[];
+  currentItemsToShownormal: Compconf[];
+  currentItemsToShowsecond: Compconf[];
+  currentItemsToShowchargeback: Compconf[];
   public get inverseOfTranslation(): string {
     if (!this.viewPort || !this.viewPort["_renderedContentOffset"]) {
       return "-0px";
@@ -52,7 +58,21 @@ export class ViewCompconfsComponent implements OnInit {
       (compconfs) => {
         this.compconfs = compconfs;
         this.loading = false;
-        this.currentItemsToShow=this.compconfs.slice(0,100)
+        this.compconfsnormal=this.compconfs.filter((item) => item.TRANSACTIONCODE=="08"&&item.PRESENTMENTINDICATOR!="R"
+        ||item.TRANSACTIONCODE=="05"&&item.PRESENTMENTINDICATOR!="R"||item.TRANSACTIONCODE=="06"&&item.PRESENTMENTINDICATOR!="R"
+        ||item.TRANSACTIONCODE=="07"&&item.PRESENTMENTINDICATOR!="R")
+        this.compconfssecond=this.compconfs.filter((item) => item.TRANSACTIONCODE=="08"&&item.PRESENTMENTINDICATOR=="R"
+        ||item.TRANSACTIONCODE=="05"&&item.PRESENTMENTINDICATOR=="R"||item.TRANSACTIONCODE=="06"&&item.PRESENTMENTINDICATOR=="R"
+        ||item.TRANSACTIONCODE=="07"&&item.PRESENTMENTINDICATOR=="R")
+        this.compconfschargeback=this.compconfs.filter((item) => item.TRANSACTIONCODE=="15"||item.TRANSACTIONCODE=="17"
+        ||item.TRANSACTIONCODE=="18")
+        this.currentItemsToShownormal=this.compconfsnormal.slice(0,100)
+        this.currentItemsToShowsecond=this.compconfssecond.slice(0,100)
+        this.currentItemsToShowchargeback=this.compconfschargeback.slice(0,100)
+console.log(this.currentItemsToShownormal)
+console.log(this.currentItemsToShowsecond)
+console.log(this.currentItemsToShowchargeback)
+
         this.compconfs.length>0?this.displaysearch="block":''
       },
       (error) => {
@@ -94,7 +114,10 @@ export class ViewCompconfsComponent implements OnInit {
   }, INTERVAL_IN_MS)
 }
 onPageChange($event) {
-  this.currentItemsToShow =  this.compconfs.slice($event.pageIndex*$event.pageSize, $event.pageIndex*$event.pageSize + $event.pageSize);
+  this.currentItemsToShownormal =  this.compconfsnormal.slice($event.pageIndex*$event.pageSize, $event.pageIndex*$event.pageSize + $event.pageSize);
+  this.currentItemsToShowsecond =  this.compconfssecond.slice($event.pageIndex*$event.pageSize, $event.pageIndex*$event.pageSize + $event.pageSize);
+  this.currentItemsToShowchargeback =  this.compconfschargeback.slice($event.pageIndex*$event.pageSize, $event.pageIndex*$event.pageSize + $event.pageSize);
+
 }
 filtercompconf()
 {
