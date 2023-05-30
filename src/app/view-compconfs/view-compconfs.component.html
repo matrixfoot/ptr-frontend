@@ -106,6 +106,8 @@
         <th scope="col" [style.top]="inverseOfTranslation">Cycle de trasnaction</th>
         <th scope="col" [style.top]="inverseOfTranslation">Montant compensé</th>
         <th scope="col" [style.top]="inverseOfTranslation">Heure trasnaction</th>
+        <th scope="col" [style.top]="inverseOfTranslation" colspan="3">Actions</th>
+
           </tr>
       </thead>
       <!--<tbody *ngIf="filtreditems.length>0">
@@ -145,8 +147,8 @@
         <td>{{comp.MERCHANTIDENTIFICATION}}</td>
               
                 <td>{{comp.CARDHOLDERNUMBER}}</td>
-                <td>{{comp.CHANNELTRANSACTIONID}}</td>
-                <td>{{comp.TRANSACTIONCODE}}</td>
+                <td>{{filtervalue(comp.CHANNELTRANSACTIONID)}}</td>
+                <td>{{filtervalue(comp.TRANSACTIONCODE)}}</td>
                 <td>{{comp.TRANSACTIONAMOUNT}}</td>
                 <td>{{comp.CARDEXPIRYDATE}}</td>
                 <td>{{comp.TRANSACTIONDATE}}</td>
@@ -173,6 +175,7 @@
         <th scope="col" [style.top]="inverseOfTranslation">Motif CHB</th>  
         <th scope="col" [style.top]="inverseOfTranslation">Cycle CHB</th>
         <th scope="col" [style.top]="inverseOfTranslation">MESSAGE</th>
+        <th scope="col" [style.top]="inverseOfTranslation" colspan="3">Actions</th>
       </tr>
       </thead>
       <!--<tbody *ngIf="filtreditems.length>0">
@@ -210,7 +213,7 @@
       <tbody *ngIf="currentItemsToShowchargeback.length>0">
       <tr *cdkVirtualFor="let comp of currentItemsToShowchargeback">
                 <td>{{comp.CHARGEBACKREASONCODE}}</td>
-                <td>{{comp.CHARGEBACKTRANSACTIONCYCLE}}</td>
+                <td>{{filtervalue(comp.CHARGEBACKTRANSACTIONCYCLE)}}</td>
                 <td>{{comp.MESSAGE}}</td>
         <td><button type="button" class="btn btn-success" (click)="getNavigation('view-carousel',carousel._id)">Consulter</button></td>
         <td><button type="button" class="btn btn-primary" (click)="getNavigation('modify-carousel',carousel._id)">Modifier</button></td>

@@ -81,6 +81,26 @@ console.log(this.currentItemsToShowchargeback)
     );
     this.token.getToken()?this.getallcompconfs():''
   }
+  filtervalue(value:string):string
+  {
+    let view:string
+    value=='T'?view='TPE/ECOM':
+    value=='G'?view='GAB':
+    value==''||value=='O'||value=='M'?view='Manual':
+    value=='R'?view='Recharge GAB':
+    value=='Z'?view='Mobile':
+    value=='05'?view='Achat':
+    value=='06'?view='crédit':
+    value=='07'?view='Cash Advance':
+    value=='08'?view='Retrait':
+    value=='15'?view='Impayé GAB':
+    value=='17'?view='Impayé CASH ADVANCE':
+    value=='18'?view='Impayé GAB':
+    value=='1'?view='1st CHARGEBACK':
+    value=='2'?view='2nd CHARGEBACK':
+    value
+    return view
+  }
   getallcompconfs() {                                            
     this.com.getcompconfs().then(
       (data:any) => {
