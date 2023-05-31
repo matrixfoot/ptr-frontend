@@ -38,11 +38,11 @@ export class ViewWorkgabComponent implements OnInit {
   showitems:false
   currentItemsToShow: any=[];
   filtreditems: any=[];
-  optionValue: any;
-  option1Value: any;
-  option2Value: any;
-  option3Value: any;
-  option4Value: any;
+  optionValue='';
+  option1Value='';
+  option2Value='';
+  option3Value='';
+  option4Value='';
 
   constructor(private token: TokenStorageService,private formBuilder: FormBuilder,
     private UserService: UserService,
@@ -102,15 +102,42 @@ export class ViewWorkgabComponent implements OnInit {
 onPageChange($event) {
   this.currentItemsToShow =  this.workgabs.slice($event.pageIndex*$event.pageSize, $event.pageIndex*$event.pageSize + $event.pageSize);
 }
+avance()
+{
+  let rech=document.getElementById("recherche")
+  this.optionValue==''?
+  rech.style.display=='none':
+this.optionValue=''
+}
 filterworkgabs()
 {
-  this.displayStyle = "none";  
+  let cri1=''
+  let cri2=''
+  let cri3:Date
+  this.displayStyle = "none";
+  this.option1Value!=''?cri1=this.option1Value:cri1=''
+  this.option2Value!=''?cri2=this.option2Value:cri2=''  
+  
+  this.currentItemsToShow.forEach((element)=>
+  {
+    this.option3Value!=''||this.option4Value!=''?cri3=new Date(element.TRANSACTIONDATE.substring(2,4)+'.'+
+    element.TRANSACTIONDATE.substring(0,2)+'.'+'-20'+element.TRANSACTIONDATE.substring(4,6)):''  
+    console.log(cri3)
+  }
+  )  
+
+  console.log(cri3)
+/*this.filtreditems=this.workgabs.filter((element)=> 
+{
+  this.option1Value!=''?element.MERCHANTIDENTIFICATION==this.option1Value:
+
+})
   this.filtreditems.push(
     this.commun.findByValue2(this.currentItemsToShow,this.optionValue)
   )
   this.settedfiltreditems= this.filtreditems.filter((obj, index) => {
     return index === this.filtreditems.findIndex(o => obj === o);
-  });
+  });*/
 }
 closePopup()
 {

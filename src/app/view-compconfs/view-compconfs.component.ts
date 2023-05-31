@@ -142,6 +142,7 @@ onPageChange($event) {
 filtercompconf()
 {
   this.displayStyle = "none";
+  
   this.filtreditems.push(
     this.commun.findByValue2(this.currentItemsToShow,this.optionValue)
   )
