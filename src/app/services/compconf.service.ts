@@ -9,7 +9,7 @@ import { Workpos } from '../models/workpos.model';
 import { Worksms } from '../models/worksms.model';
 
 
-const API_URL_cloud= 'https://ptr-backend.onrender.com/api/compconfs/'
+const API_URL_cloud= 'https://196.203.16.222:3002/api/compconfs/'
 const API_URL_test = 'http://localhost:3002/api/compconfs/'; 
 @Injectable({
     providedIn: 'root'
@@ -37,7 +37,7 @@ public worksmss$ = new Subject<Worksms[]>();
   createcompconf(compconf: Compconf[]) {
     return new Promise((resolve, reject) => {
       
-      this.http.post(API_URL_test+'createcompconf/', compconf).subscribe(
+      this.http.post(API_URL_cloud+'createcompconf/', compconf).subscribe(
         (response) => {
           resolve(response);
         },
@@ -61,7 +61,7 @@ public worksmss$ = new Subject<Worksms[]>();
   }
   getcompconfs() {
     return new Promise((resolve, reject) => {
-      this.http.get(API_URL_test+'allcompconf/').subscribe(
+      this.http.get(API_URL_cloud+'allcompconf/').subscribe(
         (compconfs: Compconf[]) => {
           if (compconfs) {
             this.compconfs = compconfs;
@@ -121,7 +121,7 @@ public worksmss$ = new Subject<Worksms[]>();
   createworkgab(Workgab: Workgab[]) {
     return new Promise((resolve, reject) => {
       
-      this.http.post(API_URL_test+'createWorkgab/', Workgab).subscribe(
+      this.http.post(API_URL_cloud+'createWorkgab/', Workgab).subscribe(
         (response) => {
           resolve(response);
         },
@@ -204,7 +204,7 @@ public worksmss$ = new Subject<Worksms[]>();
   createworkpos(Workpos: Workpos[]) {
     return new Promise((resolve, reject) => {
       
-      this.http.post(API_URL_test+'createWorkpos/', Workpos).subscribe(
+      this.http.post(API_URL_cloud+'createWorkpos/', Workpos).subscribe(
         (response) => {
           resolve(response);
         },
@@ -288,7 +288,7 @@ public worksmss$ = new Subject<Worksms[]>();
   createworksms(Worksms: Worksms[]) {
     return new Promise((resolve, reject) => {
       
-      this.http.post(API_URL_test+'createWorksms/', Worksms).subscribe(
+      this.http.post(API_URL_cloud+'createWorksms/', Worksms).subscribe(
         (response) => {
           resolve(response);
         },

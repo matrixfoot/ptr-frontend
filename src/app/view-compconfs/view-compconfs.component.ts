@@ -147,10 +147,10 @@ filtercompconf()
   )
   this.settedfiltreditems= this.filtreditems.filter((obj, index) => {
     return index === this.filtreditems.findIndex(o => obj === o);
-  });}
+  });
+}
 closePopup()
 {
   this.displayStyle = "none";
- 
 }
 }

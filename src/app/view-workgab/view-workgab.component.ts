@@ -39,6 +39,11 @@ export class ViewWorkgabComponent implements OnInit {
   currentItemsToShow: any=[];
   filtreditems: any=[];
   optionValue: any;
+  option1Value: any;
+  option2Value: any;
+  option3Value: any;
+  option4Value: any;
+
   constructor(private token: TokenStorageService,private formBuilder: FormBuilder,
     private UserService: UserService,
     private commun: CommunService,private com: compconfService,
@@ -53,6 +58,8 @@ export class ViewWorkgabComponent implements OnInit {
         this.workgabs = workgabs;
         this.loading = false;
         this.currentItemsToShow=this.workgabs.slice(0,100)
+        this.displaysearch="block"
+
       },
       (error) => {
         this.loading = false;
@@ -97,13 +104,14 @@ onPageChange($event) {
 }
 filterworkgabs()
 {
-  this.displayStyle = "none";
+  this.displayStyle = "none";  
   this.filtreditems.push(
     this.commun.findByValue2(this.currentItemsToShow,this.optionValue)
   )
   this.settedfiltreditems= this.filtreditems.filter((obj, index) => {
     return index === this.filtreditems.findIndex(o => obj === o);
-  });}
+  });
+}
 closePopup()
 {
   this.displayStyle = "none";
