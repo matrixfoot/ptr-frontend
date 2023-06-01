@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
     if (this.isLoggedIn) {
       this.currentuser = this.tokenStorage.getUser();
     }
-    this.carouselsSub = this.carousel.carousels$.subscribe(
+    /*this.carouselsSub = this.carousel.carousels$.subscribe(
       (carousels) => {
         this.carousels = carousels; 
         this.actualites=this.carousels.filter(p => p.tarifs.length==0)
@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
       }
     );
     
-      this.carousel.getCarouselalldata();
+      this.carousel.getCarouselalldata();*/
       setTimeout(() => document.getElementById('id01').style.display='none', 5000);
   }
  
