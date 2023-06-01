@@ -11,6 +11,7 @@ import { CommunService } from '../services/commun';
 import { ExcelService } from '../services/excel.service';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { TokenStorageService } from '../services/token-storage.service';
+import * as CryptoJS from 'crypto-js';
 @Component({
   selector: 'app-view-workgab',
   templateUrl: './view-workgab.component.html',
@@ -127,7 +128,7 @@ filterworkgabs()
  
 this.optionValue!=''?filtredbyvalue=this.commun.filterByValue(this.workgabs,this.optionValue):filtredbyvalue=[]
 this.option1Value!=''?filtredbyid=this.commun.filterByValue(this.workgabs,this.option1Value):filtredbyid=[]
-this.option2Value!=''?filtredbycarte=this.commun.filterByValue(this.workgabs,this.option2Value):filtredbycarte=[]   
+this.option2Value!=''?filtredbycarte=this.commun.filterByValue(this.workgabs,CryptoJS.AES.encrypt(this.option2Value, '****************').toString()):filtredbycarte=[]   
 this.option3Value?
 filtredbyinf=this.workgabs.filter((element)=> new Date(element.TRANSACTIONDATE.substring(2,4)+'.'+
 element.TRANSACTIONDATE.substring(0,2)+'.'+'-20'+element.TRANSACTIONDATE.substring(4,6)) >=this.option3Value):filtredbyinf=[]
