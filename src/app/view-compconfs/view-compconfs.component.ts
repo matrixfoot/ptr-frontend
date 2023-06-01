@@ -154,8 +154,7 @@ avance()
 
 filtercompconf()
 {
-  let ciphertext = CryptoJS.AES.encrypt(this.option2Value, '****************').toString();
-this.option2Value=ciphertext
+ 
   let filtredbyid=[]
   let filtredbycarte=[]
   let filtredbyinf=[]
@@ -165,7 +164,11 @@ this.option2Value=ciphertext
   this.displayStyle = "block"; 
 this.optionValue!=''?filtredbyvalue=this.commun.filterByValue(this.compconfs,this.optionValue):filtredbyvalue=[]
 this.option1Value!=''?filtredbyid=this.commun.filterByValue(this.compconfs,this.option1Value):filtredbyid=[]
-this.option2Value!=''?filtredbycarte=this.commun.filterByValue(this.compconfs,this.option2Value):filtredbycarte=[]   
+this.option2Value!=''?this.compconfs.forEach((element)=> 
+{
+  CryptoJS.AES.decrypt(element.CARDHOLDERNUMBER, '****************').toString(CryptoJS.enc.Utf8)==this.option2Value?filtredbycarte.push(element):''
+}
+):filtredbycarte=[] 
 this.option3Value?
 filtredbyinf=this.compconfs.filter((element)=> new Date(element.TRANSACTIONDATE.substring(2,4)+'.'+
 element.TRANSACTIONDATE.substring(0,2)+'.'+'-20'+element.TRANSACTIONDATE.substring(4,6)) >=this.option3Value):filtredbyinf=[]

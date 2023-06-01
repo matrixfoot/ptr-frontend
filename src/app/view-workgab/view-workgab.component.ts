@@ -112,6 +112,7 @@ this.optionValue=''
 }
 filterworkgabs()
 {
+ 
   let filtredbyid=[]
   let filtredbycarte=[]
   let filtredbyinf=[]
@@ -128,7 +129,11 @@ filterworkgabs()
  
 this.optionValue!=''?filtredbyvalue=this.commun.filterByValue(this.workgabs,this.optionValue):filtredbyvalue=[]
 this.option1Value!=''?filtredbyid=this.commun.filterByValue(this.workgabs,this.option1Value):filtredbyid=[]
-this.option2Value!=''?filtredbycarte=this.commun.filterByValue(this.workgabs,CryptoJS.AES.encrypt(this.option2Value, '****************').toString()):filtredbycarte=[]   
+this.option2Value!=''?this.workgabs.forEach((element)=> 
+{
+  CryptoJS.AES.decrypt(element.CARDHOLDERNUMBER, '****************').toString(CryptoJS.enc.Utf8)==this.option2Value?filtredbycarte.push(element):''
+}
+):filtredbycarte=[]   
 this.option3Value?
 filtredbyinf=this.workgabs.filter((element)=> new Date(element.TRANSACTIONDATE.substring(2,4)+'.'+
 element.TRANSACTIONDATE.substring(0,2)+'.'+'-20'+element.TRANSACTIONDATE.substring(4,6)) >=this.option3Value):filtredbyinf=[]
