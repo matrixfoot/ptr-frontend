@@ -12,6 +12,7 @@ import { CommunService } from '../services/commun';
 import { ExcelService } from '../services/excel.service';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { TokenStorageService } from '../services/token-storage.service';
+import * as CryptoJS from 'crypto-js';
 @Component({
   selector: 'app-view-compconfs',
   templateUrl: './view-compconfs.component.html',
@@ -153,6 +154,10 @@ avance()
 
 filtercompconf()
 {
+  let bytes  = CryptoJS.AES.encrypt(this.option2Value, '****************');
+  let key = bytes.toString(CryptoJS.enc.Utf8);
+console.log(key)
+this.option2Value=key
   let filtredbyid=[]
   let filtredbycarte=[]
   let filtredbyinf=[]
