@@ -29,10 +29,11 @@ export class ViewCompconfsComponent implements OnInit {
   currentItemsToShownormal: Compconf[];
   currentItemsToShowsecond: Compconf[];
   currentItemsToShowchargeback: Compconf[];
-  option1Value: string;
-  option2Value: string;
-  option3Value: any;
-  option4Value: any;
+  optionValue='';
+  option1Value='';
+  option2Value='';
+  option3Value=null;
+  option4Value=null;
   public get inverseOfTranslation(): string {
     if (!this.viewPort || !this.viewPort["_renderedContentOffset"]) {
       return "-0px";
@@ -48,7 +49,6 @@ export class ViewCompconfsComponent implements OnInit {
   showitems:false
   currentItemsToShow: any=[];
   filtreditems: any=[];
-  optionValue: any;
   constructor(private token: TokenStorageService,private formBuilder: FormBuilder,
     private UserService: UserService,
     private commun: CommunService,private com: compconfService,
