@@ -29,6 +29,10 @@ export class ViewCompconfsComponent implements OnInit {
   currentItemsToShownormal: Compconf[];
   currentItemsToShowsecond: Compconf[];
   currentItemsToShowchargeback: Compconf[];
+  option1Value: string;
+  option2Value: string;
+  option3Value: any;
+  option4Value: any;
   public get inverseOfTranslation(): string {
     if (!this.viewPort || !this.viewPort["_renderedContentOffset"]) {
       return "-0px";
@@ -139,13 +143,34 @@ onPageChange($event) {
   this.currentItemsToShowchargeback =  this.compconfschargeback.slice($event.pageIndex*$event.pageSize, $event.pageIndex*$event.pageSize + $event.pageSize);
 
 }
+avance()
+{
+  let rech=document.getElementById("recherche")
+  this.optionValue==''?
+  rech.style.display=='none':
+  this.optionValue=''
+}
+
 filtercompconf()
 {
-  this.displayStyle = "none";
-  
-  this.filtreditems.push(
-    this.commun.findByValue2(this.currentItemsToShow,this.optionValue)
-  )
+  let filtredbyid=[]
+  let filtredbycarte=[]
+  let filtredbyinf=[]
+  let filtredbysup=[]
+  let filtredbyvalue=[]
+  this.filtreditems=[]
+  this.displayStyle = "block"; 
+this.optionValue!=''?filtredbyvalue=this.commun.filterByValue(this.compconfs,this.optionValue):filtredbyvalue=[]
+this.option1Value!=''?filtredbyid=this.commun.filterByValue(this.compconfs,this.option1Value):filtredbyid=[]
+this.option2Value!=''?filtredbycarte=this.commun.filterByValue(this.compconfs,this.option2Value):filtredbycarte=[]   
+this.option3Value?
+filtredbyinf=this.compconfs.filter((element)=> new Date(element.TRANSACTIONDATE.substring(2,4)+'.'+
+element.TRANSACTIONDATE.substring(0,2)+'.'+'-20'+element.TRANSACTIONDATE.substring(4,6)) >=this.option3Value):filtredbyinf=[]
+this.option4Value?
+filtredbysup=this.compconfs.filter((element)=> new Date(element.TRANSACTIONDATE.substring(2,4)+'.'+
+element.TRANSACTIONDATE.substring(0,2)+'.'+'-20'+element.TRANSACTIONDATE.substring(4,6)) <= this.option4Value):filtredbysup=[]
+
+this.filtreditems=this.filtreditems.concat(filtredbyid,filtredbycarte,filtredbyinf,filtredbysup,filtredbyvalue)
   this.settedfiltreditems= this.filtreditems.filter((obj, index) => {
     return index === this.filtreditems.findIndex(o => obj === o);
   });

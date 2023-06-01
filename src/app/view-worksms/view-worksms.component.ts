@@ -24,6 +24,10 @@ export class ViewWorksmsComponent implements OnInit {
   displayStyle: string;
   settedfiltreditems: any[]=[];
   displaysearch='none';
+  option1Value: string;
+  option2Value: string;
+  option3Value: any;
+  option4Value: any;
   public get inverseOfTranslation(): string {
     if (!this.viewPort || !this.viewPort["_renderedContentOffset"]) {
       return "-0px";
@@ -96,15 +100,44 @@ export class ViewWorksmsComponent implements OnInit {
 onPageChange($event) {
   this.currentItemsToShow =  this.worksmss.slice($event.pageIndex*$event.pageSize, $event.pageIndex*$event.pageSize + $event.pageSize);
 }
+avance()
+{
+  let rech=document.getElementById("recherche")
+  this.optionValue==''?
+  rech.style.display=='none':
+this.optionValue=''
+}
 filterworksmss()
 {
-  this.displayStyle = "none";
-  this.filtreditems.push(
-    this.commun.findByValue2(this.currentItemsToShow,this.optionValue)
-  )
+  let filtredbyid=[]
+  let filtredbycarte=[]
+  let filtredbyinf=[]
+  let filtredbysup=[]
+  let filtredbyvalue=[]
+  this.filtreditems=[]
+  let cri1=''
+  let cri2=''
+  let cri3:Date
+  this.displayStyle = "block";
+  this.option1Value!=''?cri1=this.option1Value:cri1=''
+  this.option2Value!=''?cri2=this.option2Value:cri2=''  
+  
+ 
+this.optionValue!=''?filtredbyvalue=this.commun.filterByValue(this.worksmss,this.optionValue):filtredbyvalue=[]
+this.option1Value!=''?filtredbyid=this.commun.filterByValue(this.worksmss,this.option1Value):filtredbyid=[]
+this.option2Value!=''?filtredbycarte=this.commun.filterByValue(this.worksmss,this.option2Value):filtredbycarte=[]   
+this.option3Value?
+filtredbyinf=this.worksmss.filter((element)=> new Date(element.TRANSACTIONDATE.substring(2,4)+'.'+
+element.TRANSACTIONDATE.substring(0,2)+'.'+'-20'+element.TRANSACTIONDATE.substring(4,6)) >=this.option3Value):filtredbyinf=[]
+this.option4Value?
+filtredbysup=this.worksmss.filter((element)=> new Date(element.TRANSACTIONDATE.substring(2,4)+'.'+
+element.TRANSACTIONDATE.substring(0,2)+'.'+'-20'+element.TRANSACTIONDATE.substring(4,6)) <= this.option4Value):filtredbysup=[]
+
+this.filtreditems=this.filtreditems.concat(filtredbyid,filtredbycarte,filtredbyinf,filtredbysup,filtredbyvalue)
   this.settedfiltreditems= this.filtreditems.filter((obj, index) => {
     return index === this.filtreditems.findIndex(o => obj === o);
-  });}
+  });
+}
 closePopup()
 {
   this.displayStyle = "none";

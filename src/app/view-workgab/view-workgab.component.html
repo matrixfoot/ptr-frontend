@@ -21,7 +21,7 @@
 <a data-bs-toggle="collapse" class="nav-link px-0 align-middle" href="view-workgab#collapseExample"(click)="avance()">
 Recherche Avancée<i class="fa fa-angle-down"></i>
 </a>
-<div class="collapse hide nav flex-column ms-1" id="collapseExample" data-bs-parent="#menu">
+<div class="collapse hide nav flex-column ms-1" id="collapseExample">
 <div class="card card-body"> 
 <div class="row">
 <div class="col-md-6">
@@ -67,9 +67,10 @@ Recherche Avancée<i class="fa fa-angle-down"></i>
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header" style="text-align: center;">
-        <h4 class="modal-title">Liste Des Transactions sélectionnées</h4>
+        <h4 class="modal-title">Liste Des Transactions sélectionnées:{{filtreditems.length}}</h4>
       </div>
       <div class="modal-body">
+        
         <table class="table table-striped">
           <thead>
             <tr>
@@ -102,6 +103,7 @@ Recherche Avancée<i class="fa fa-angle-down"></i>
               <th scope="col" [style.top]="inverseOfTranslation">TERMINALTYPE2</th>
               <th scope="col" [style.top]="inverseOfTranslation">FILLER7</th>
               <th scope="col" [style.top]="inverseOfTranslation">TRANSTRAILERID</th>
+              <th scope="col" [style.top]="inverseOfTranslation" colspan="2">Actions</th>
                 </tr>
             </thead>
             <tbody *ngIf="filtreditems.length>0">
@@ -136,7 +138,6 @@ Recherche Avancée<i class="fa fa-angle-down"></i>
                 <td>{{comp.FILLER7}}</td>
                 <td>{{comp.TRANSTRAILERID}}</td>
                 <td><button type="button" class="btn btn-success" (click)="getNavigation('view-carousel',carousel._id)">Consulter</button></td>
-                <td><button type="button" class="btn btn-primary" (click)="getNavigation('modify-carousel',carousel._id)">Modifier</button></td>
                 <td><button type="button" class="btn btn-danger" (click)="onDelete(carousel._id)">Supprimer</button></td>          
               </tr>
             </tbody>

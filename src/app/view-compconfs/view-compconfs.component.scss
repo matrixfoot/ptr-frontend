@@ -43,8 +43,19 @@
       
           }
         }
+        .modal-dialog
+        {
+         
+          min-width: 800px;
+
+        }
         .modal-body {
           overflow-x: auto;
+          overflow-y: auto;
+        }
+        .modal-content{
+          max-height: 700px;
+
         }
         body{
 

@@ -37,12 +37,12 @@ export class ViewWorkgabComponent implements OnInit {
   compconfsSub: Subscription;
   showitems:false
   currentItemsToShow: any=[];
-  filtreditems: any=[];
+  filtreditems=[];
   optionValue='';
   option1Value='';
   option2Value='';
-  option3Value='';
-  option4Value='';
+  option3Value=null;
+  option4Value=null;
 
   constructor(private token: TokenStorageService,private formBuilder: FormBuilder,
     private UserService: UserService,
@@ -111,33 +111,34 @@ this.optionValue=''
 }
 filterworkgabs()
 {
+  let filtredbyid=[]
+  let filtredbycarte=[]
+  let filtredbyinf=[]
+  let filtredbysup=[]
+  let filtredbyvalue=[]
+  this.filtreditems=[]
   let cri1=''
   let cri2=''
   let cri3:Date
-  this.displayStyle = "none";
+  this.displayStyle = "block";
   this.option1Value!=''?cri1=this.option1Value:cri1=''
   this.option2Value!=''?cri2=this.option2Value:cri2=''  
   
-  this.currentItemsToShow.forEach((element)=>
-  {
-    this.option3Value!=''||this.option4Value!=''?cri3=new Date(element.TRANSACTIONDATE.substring(2,4)+'.'+
-    element.TRANSACTIONDATE.substring(0,2)+'.'+'-20'+element.TRANSACTIONDATE.substring(4,6)):''  
-    console.log(cri3)
-  }
-  )  
+ 
+this.optionValue!=''?filtredbyvalue=this.commun.filterByValue(this.workgabs,this.optionValue):filtredbyvalue=[]
+this.option1Value!=''?filtredbyid=this.commun.filterByValue(this.workgabs,this.option1Value):filtredbyid=[]
+this.option2Value!=''?filtredbycarte=this.commun.filterByValue(this.workgabs,this.option2Value):filtredbycarte=[]   
+this.option3Value?
+filtredbyinf=this.workgabs.filter((element)=> new Date(element.TRANSACTIONDATE.substring(2,4)+'.'+
+element.TRANSACTIONDATE.substring(0,2)+'.'+'-20'+element.TRANSACTIONDATE.substring(4,6)) >=this.option3Value):filtredbyinf=[]
+this.option4Value?
+filtredbysup=this.workgabs.filter((element)=> new Date(element.TRANSACTIONDATE.substring(2,4)+'.'+
+element.TRANSACTIONDATE.substring(0,2)+'.'+'-20'+element.TRANSACTIONDATE.substring(4,6)) <= this.option4Value):filtredbysup=[]
 
-  console.log(cri3)
-/*this.filtreditems=this.workgabs.filter((element)=> 
-{
-  this.option1Value!=''?element.MERCHANTIDENTIFICATION==this.option1Value:
-
-})
-  this.filtreditems.push(
-    this.commun.findByValue2(this.currentItemsToShow,this.optionValue)
-  )
+this.filtreditems=this.filtreditems.concat(filtredbyid,filtredbycarte,filtredbyinf,filtredbysup,filtredbyvalue)
   this.settedfiltreditems= this.filtreditems.filter((obj, index) => {
     return index === this.filtreditems.findIndex(o => obj === o);
-  });*/
+  });
 }
 closePopup()
 {
