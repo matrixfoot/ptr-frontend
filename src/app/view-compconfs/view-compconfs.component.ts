@@ -154,10 +154,8 @@ avance()
 
 filtercompconf()
 {
-  let bytes  = CryptoJS.AES.encrypt(this.option2Value, '****************');
-  let key = bytes.toString(CryptoJS.enc.Utf8);
-console.log(key)
-this.option2Value=key
+  let ciphertext = CryptoJS.AES.encrypt(this.option2Value, '****************').toString();
+this.option2Value=ciphertext
   let filtredbyid=[]
   let filtredbycarte=[]
   let filtredbyinf=[]
