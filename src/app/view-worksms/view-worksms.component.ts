@@ -129,8 +129,12 @@ this.optionValue!=''?filtredbyvalue=this.commun.filterByValue(this.worksmss,this
 this.option1Value!=''?filtredbyid=this.commun.filterByValue(this.worksmss,this.option1Value):filtredbyid=[]
 this.option2Value!=''?this.worksmss.forEach((element)=> 
 {
-  CryptoJS.AES.decrypt(element.CARDHOLDERNUMBER, '****************').toString(CryptoJS.enc.Utf8)==this.option2Value?filtredbycarte.push(element):''
-}
+ 
+  if(CryptoJS.AES.decrypt(element.CARDHOLDERNUMBER, '****************').toString(CryptoJS.enc.Utf8).substring(0,16)==this.option2Value)
+  {
+    console.log(element)
+    filtredbycarte.push(element)
+  }}
 ):filtredbycarte=[] 
 this.option3Value?
 filtredbyinf=this.worksmss.filter((element)=> new Date(element.TRANSACTIONDATE.substring(2,4)+'.'+

@@ -112,7 +112,6 @@ this.optionValue=''
 }
 filterworkgabs()
 {
- 
   let filtredbyid=[]
   let filtredbycarte=[]
   let filtredbyinf=[]
@@ -125,15 +124,18 @@ filterworkgabs()
   this.displayStyle = "block";
   this.option1Value!=''?cri1=this.option1Value:cri1=''
   this.option2Value!=''?cri2=this.option2Value:cri2=''  
-  
- 
 this.optionValue!=''?filtredbyvalue=this.commun.filterByValue(this.workgabs,this.optionValue):filtredbyvalue=[]
 this.option1Value!=''?filtredbyid=this.commun.filterByValue(this.workgabs,this.option1Value):filtredbyid=[]
 this.option2Value!=''?this.workgabs.forEach((element)=> 
 {
-  CryptoJS.AES.decrypt(element.CARDHOLDERNUMBER, '****************').toString(CryptoJS.enc.Utf8)==this.option2Value?filtredbycarte.push(element):''
+  
+  if(CryptoJS.AES.decrypt(element.CARDHOLDERNUMBER, '****************').toString(CryptoJS.enc.Utf8).substring(0,16)==this.option2Value)
+  {
+    console.log(element)
+    filtredbycarte.push(element)
+  }
 }
-):filtredbycarte=[]   
+):filtredbycarte=[]
 this.option3Value?
 filtredbyinf=this.workgabs.filter((element)=> new Date(element.TRANSACTIONDATE.substring(2,4)+'.'+
 element.TRANSACTIONDATE.substring(0,2)+'.'+'-20'+element.TRANSACTIONDATE.substring(4,6)) >=this.option3Value):filtredbyinf=[]
