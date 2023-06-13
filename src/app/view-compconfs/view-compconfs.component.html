@@ -92,11 +92,11 @@ Recherche Avancée<i class="fa fa-angle-down"></i>
               <th scope="col" [style.top]="inverseOfTranslation">Cycle de trasnaction</th>
               <th scope="col" [style.top]="inverseOfTranslation">Montant compensé</th>
               <th scope="col" [style.top]="inverseOfTranslation">Heure trasnaction</th>
-              <th scope="col" [style.top]="inverseOfTranslation" colspan="2">Actions</th>
+              <th scope="col" [style.top]="inverseOfTranslation">Confirmation</th>
                 </tr>
             </thead>
             <tbody *ngIf="filtreditems.length>0">
-              <tr *ngFor="let comp of settedfiltreditems">
+              <tr *ngFor="let comp of settedfiltreditems, let i=index">
                 <td>{{comp.MERCHANTIDENTIFICATION}}</td>
               
                 <td>{{comp.CARDHOLDERNUMBER}}</td>
@@ -112,8 +112,12 @@ Recherche Avancée<i class="fa fa-angle-down"></i>
                 <td>{{comp.TRANSACTIONORDERUSAGECODE}}</td>
                 <td>{{comp.SETTLEMENTAMOUNT}}</td>
                 <td>{{comp.TRANSACTIONTIME}}</td>
-                <td><button type="button" class="btn btn-success" (click)="getNavigation('view-carousel',carousel._id)">Générer réclamation</button></td>
-                <td><button type="button" class="btn btn-danger" (click)="onDelete(carousel._id)">Supprimer</button></td>          
+                <td style="width:20px"> 
+                  <input type="checkbox" id="{{ 'check' + i }}"/>
+                </td>
+              </tr>
+              <tr style="text-align: center;">
+               <button type="button" class="btn btn-secondary" (click)="create(carousel._id)">Générer réclamation</button>        
               </tr>
             </tbody>
         </table>

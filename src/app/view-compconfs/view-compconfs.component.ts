@@ -159,9 +159,11 @@ filtercompconf()
   let filtredbycarte=[]
   let filtredbyinf=[]
   let filtredbysup=[]
+  let filtredbyboth=[]
   let filtredbyvalue=[]
   this.filtreditems=[]
   this.displayStyle = "block"; 
+
 this.optionValue!=''?filtredbyvalue=this.commun.filterByValue(this.compconfs,this.optionValue):filtredbyvalue=[]
 this.option1Value!=''?filtredbyid=this.commun.filterByValue(this.compconfs,this.option1Value):filtredbyid=[]
 this.option2Value!=''?this.compconfs.forEach((element)=> 
@@ -174,20 +176,30 @@ this.option2Value!=''?this.compconfs.forEach((element)=>
   }
 }
 ):filtredbycarte=[] 
-this.option3Value?
-filtredbyinf=this.compconfs.filter((element)=> new Date(element.TRANSACTIONDATE.substring(2,4)+'.'+
-element.TRANSACTIONDATE.substring(0,2)+'.'+'-20'+element.TRANSACTIONDATE.substring(4,6)) >=this.option3Value):filtredbyinf=[]
-this.option4Value?
-filtredbysup=this.compconfs.filter((element)=> new Date(element.TRANSACTIONDATE.substring(2,4)+'.'+
-element.TRANSACTIONDATE.substring(0,2)+'.'+'-20'+element.TRANSACTIONDATE.substring(4,6)) <= this.option4Value):filtredbysup=[]
-
-this.filtreditems=this.filtreditems.concat(filtredbyid,filtredbycarte,filtredbyinf,filtredbysup,filtredbyvalue)
+this.option3Value&&!this.option4Value?
+filtredbyinf=this.compconfs.filter((element)=> new Date('20'+element.TRANSACTIONDATE.substring(4,6)+'-'+element.TRANSACTIONDATE.substring(2,4)
++'-'+element.TRANSACTIONDATE.substring(0,2)).getTime() >= new Date(this.option3Value).getTime()):filtredbyinf=[]
+this.option4Value&&!this.option3Value?
+filtredbysup=this.compconfs.filter((element)=> new Date('20'+element.TRANSACTIONDATE.substring(4,6)+'-'+element.TRANSACTIONDATE.substring(2,4)
++'-'+element.TRANSACTIONDATE.substring(0,2)).getTime() <= new Date(this.option4Value).getTime()):filtredbysup=[]
+this.option3Value&&this.option4Value?
+filtredbyboth=this.compconfs.filter((element)=> new Date('20'+element.TRANSACTIONDATE.substring(4,6)+'-'+element.TRANSACTIONDATE.substring(2,4)
++'-'+element.TRANSACTIONDATE.substring(0,2)).getTime() >= new Date(this.option3Value).getTime()&&
+new Date('20'+element.TRANSACTIONDATE.substring(4,6)+'-'+element.TRANSACTIONDATE.substring(2,4)
++'-'+element.TRANSACTIONDATE.substring(0,2)).getTime() <= new Date(this.option4Value).getTime()):filtredbyboth=[]
+this.filtreditems=this.filtreditems.concat(filtredbyid,filtredbycarte,filtredbyinf,filtredbysup,filtredbyboth,filtredbyvalue)
   this.settedfiltreditems= this.filtreditems.filter((obj, index) => {
     return index === this.filtreditems.findIndex(o => obj === o);
   });
+
 }
 closePopup()
 {
   this.displayStyle = "none";
+  for (let i = 0; i < this.filtreditems.length ; i++) 
+  {
+    var checkbox:any = document.getElementById('check'+`${i}`);  
+  console.log(checkbox?checkbox.checked:'')
+  }
 }
 }

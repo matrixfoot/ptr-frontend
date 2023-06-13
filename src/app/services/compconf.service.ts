@@ -9,7 +9,7 @@ import { Workpos } from '../models/workpos.model';
 import { Worksms } from '../models/worksms.model';
 
 
-const API_URL_cloud= 'https://196.203.16.222:3002/api/compconfs/'
+const API_URL_cloud= 'https://macompta.com.tn:3002/api/compconfs/'
 const API_URL_test = 'http://localhost:3002/api/compconfs/'; 
 @Injectable({
     providedIn: 'root'
