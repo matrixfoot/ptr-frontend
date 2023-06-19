@@ -20,7 +20,7 @@ export class ContactService {
  
 
     getContactreqs() {
-        this.http.get(API_URL_test).subscribe(
+        this.http.get(API_URL_cloud).subscribe(
           (contactreqs: Contact[]) => {
             if (contactreqs) {
               this.contactreqs = contactreqs;
@@ -40,7 +40,7 @@ export class ContactService {
         return new Promise((resolve, reject) => {
           
 
-          this.http.get(API_URL_test + id).subscribe(
+          this.http.get(API_URL_cloud + id).subscribe(
             (response) => {
               resolve(response);
             },
@@ -52,7 +52,7 @@ export class ContactService {
       }
       getContact(email: string) {
         return new Promise((resolve, reject) => {
-          this.http.post(API_URL_test +'contact' ,{email}).subscribe(
+          this.http.post(API_URL_cloud +'contact' ,{email}).subscribe(
             (contacts: Contact[]) => {
               if (contacts) {
                 this.contactreqs = contacts;
@@ -67,7 +67,7 @@ export class ContactService {
       }
       getContactreqssup(date: string) {
         return new Promise((resolve, reject) => {
-          this.http.post(API_URL_test +'filtercontactreqsup' ,{date}).subscribe(
+          this.http.post(API_URL_cloud +'filtercontactreqsup' ,{date}).subscribe(
             (contactreqs: Contact[]) => {
               if (contactreqs) {
                 this.contactreqs = contactreqs;
@@ -82,7 +82,7 @@ export class ContactService {
       }
       getContactreqsinf(date: string) {
         return new Promise((resolve, reject) => {
-          this.http.post(API_URL_test +'filtercontactreqinf' ,{date}).subscribe(
+          this.http.post(API_URL_cloud +'filtercontactreqinf' ,{date}).subscribe(
             (contactreqs: Contact[]) => {
               if (contactreqs) {
                 this.contactreqs = contactreqs;
@@ -102,7 +102,7 @@ export class ContactService {
           const contactData = new FormData();
           contactData.append('contact', JSON.stringify(contact));
           contactData.append('image', image, contact.firstname);
-          this.http.post(API_URL_test+'createcontactreq', contactData).subscribe(
+          this.http.post(API_URL_cloud+'createcontactreq', contactData).subscribe(
             (response) => {
               resolve(response);
             },
@@ -115,7 +115,7 @@ export class ContactService {
       createwithoutimage(contact: Contact) {
         return new Promise((resolve, reject) => {
           
-          this.http.post(API_URL_test+'createcontactreqwithoutimage', contact).subscribe(
+          this.http.post(API_URL_cloud+'createcontactreqwithoutimage', contact).subscribe(
             (response) => {
               resolve(response);
             },
@@ -128,7 +128,7 @@ export class ContactService {
       comunicatewithuser(contact: Contact) {
         return new Promise((resolve, reject) => {
           
-          this.http.post(API_URL_test+'comunicatewithuser', contact).subscribe(
+          this.http.post(API_URL_cloud+'comunicatewithuser', contact).subscribe(
             (response) => {
               resolve(response);
             },
@@ -151,7 +151,7 @@ export class ContactService {
             contactreqData.append('contactreq', JSON.stringify(contactreq));
             contactreqData.append('image', image, contactreq.email);
           }
-          this.http.put(API_URL_test + id, contactreqData).subscribe(
+          this.http.put(API_URL_cloud + id, contactreqData).subscribe(
             (response) => {
               resolve(response);
             },
@@ -166,7 +166,7 @@ export class ContactService {
           
             
           
-          this.http.put(API_URL_test+ id, contactreq).subscribe(
+          this.http.put(API_URL_cloud+ id, contactreq).subscribe(
             (response) => {
               resolve(response);
             },

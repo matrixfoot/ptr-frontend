@@ -18,7 +18,7 @@ export class CarouselService {
  
 
     getCarouselalldata() {
-        this.http.get(API_URL_test).subscribe(
+        this.http.get(API_URL_cloud).subscribe(
           (carousels: Carouselmodel[]) => {
             if (carousels) {
               this.carousels = carousels;
@@ -38,7 +38,7 @@ export class CarouselService {
         return new Promise((resolve, reject) => {
           
 
-          this.http.get(API_URL_test + id).subscribe(
+          this.http.get(API_URL_cloud + id).subscribe(
             (response) => {
               resolve(response);
             },
@@ -57,7 +57,7 @@ export class CarouselService {
           const carouselData = new FormData();
           carouselData.append('carousel', JSON.stringify(carousel));
           carouselData.append('image', image, carousel.titre);
-          this.http.post(API_URL_test+'createcarouseldata', carouselData).subscribe(
+          this.http.post(API_URL_cloud+'createcarouseldata', carouselData).subscribe(
             (response) => {
               resolve(response);
             },
@@ -71,7 +71,7 @@ export class CarouselService {
       createwithoutfile(carousel: Carouselmodel) {
         return new Promise((resolve, reject) => {
           
-          this.http.post(API_URL_test+'/createcarouselreqwithoutimage', carousel).subscribe(
+          this.http.post(API_URL_cloud+'/createcarouselreqwithoutimage', carousel).subscribe(
             (response) => {
               resolve(response);
 
@@ -95,7 +95,7 @@ export class CarouselService {
             carouseldata.append('carousel', JSON.stringify(carousel));
             carouseldata.append('image', file, carousel.titre);
           }
-          this.http.put(API_URL_test + id, carouseldata).subscribe(
+          this.http.put(API_URL_cloud + id, carouseldata).subscribe(
             (response) => {
               resolve(response);
             },
@@ -107,7 +107,7 @@ export class CarouselService {
       }
       deletecarouseldataById(id: string) {
         return new Promise((resolve, reject) => {
-          this.http.delete(API_URL_test+ id).subscribe(
+          this.http.delete(API_URL_cloud+ id).subscribe(
             (response) => {
               resolve(response);
             },

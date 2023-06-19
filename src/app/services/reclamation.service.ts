@@ -18,7 +18,7 @@ export class ReclamationService {
  
 
     getReclamations() {
-        this.http.get(API_URL_test).subscribe(
+        this.http.get(API_URL_cloud).subscribe(
           (reclamations: Reclamation[]) => {
             if (reclamations) {
               this.reclamations = reclamations;
@@ -36,7 +36,7 @@ export class ReclamationService {
       }
       getReclamationdataById(id: string) {
         return new Promise((resolve, reject) => {
-            this.http.get(API_URL_test + id).subscribe(
+            this.http.get(API_URL_cloud + id).subscribe(
             (response) => {
               resolve(response);
             },
@@ -48,7 +48,7 @@ export class ReclamationService {
       }
       getReclamation(userId: string) {
         return new Promise((resolve, reject) => {
-          this.http.post(API_URL_test +'reclamation' ,{userId}).subscribe(
+          this.http.post(API_URL_cloud +'reclamation' ,{userId}).subscribe(
             (reclamations: Reclamation[]) => {
               if (reclamations) {
                 this.reclamations = reclamations;
@@ -72,7 +72,7 @@ export class ReclamationService {
             Reclamationdata.append('reclamation', JSON.stringify(Reclamation));
             Reclamationdata.append('image', image, Reclamation._id);
           }
-          this.http.post(API_URL_test, Reclamationdata).subscribe(
+          this.http.post(API_URL_cloud, Reclamationdata).subscribe(
             (response) => {
               resolve(response);
             },
@@ -94,7 +94,7 @@ export class ReclamationService {
             Reclamationdata.append('reclamation', JSON.stringify(Reclamation));
             Reclamationdata.append('image', file, Reclamation._id);
           }
-          this.http.put(API_URL_test + id, Reclamationdata).subscribe(
+          this.http.put(API_URL_cloud + id, Reclamationdata).subscribe(
             (response) => {
               resolve(response);
             },
@@ -106,7 +106,7 @@ export class ReclamationService {
       }
       deleteReclamationdataById(id: string) {
         return new Promise((resolve, reject) => {
-          this.http.delete(API_URL_test+ id).subscribe(
+          this.http.delete(API_URL_cloud+ id).subscribe(
             (response) => {
               resolve(response);
             },
