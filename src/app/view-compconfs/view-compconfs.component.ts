@@ -6,6 +6,7 @@ import { Decfiscmens } from '../models/dec-fisc-mens';
 import { Router } from '@angular/router';
 import { Compconf } from '../models/compconf.model';
 import { compconfService } from '../services/compconf.service';
+import { ReclamationService } from '../services/reclamation.service';
 
 import { FormBuilder } from '@angular/forms';
 import { CommunService } from '../services/commun';
@@ -13,6 +14,8 @@ import { ExcelService } from '../services/excel.service';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { TokenStorageService } from '../services/token-storage.service';
 import * as CryptoJS from 'crypto-js';
+import Swal from 'sweetalert2';
+import { Reclamation } from '../models/reclamation';
 @Component({
   selector: 'app-view-compconfs',
   templateUrl: './view-compconfs.component.html',
@@ -53,6 +56,7 @@ export class ViewCompconfsComponent implements OnInit {
   constructor(private token: TokenStorageService,private formBuilder: FormBuilder,
     private UserService: UserService,
     private commun: CommunService,private com: compconfService,
+    private recserv: ReclamationService,
     private router: Router,
     private excelService:ExcelService) { }
 
@@ -196,10 +200,49 @@ this.filtreditems=this.filtreditems.concat(filtredbyid,filtredbycarte,filtredbyi
 closePopup()
 {
   this.displayStyle = "none";
+}
+create()
+{
+  let checkboxlist=[]
+  let filtreditemschecked=[]
   for (let i = 0; i < this.filtreditems.length ; i++) 
   {
     var checkbox:any = document.getElementById('check'+`${i}`);  
-  console.log(checkbox?checkbox.checked:'')
+   checkbox?checkbox.checked==true?
+   (checkboxlist.push(checkbox.checked),
+   filtreditemschecked.push(this.filtreditems[i]))
+   :''
+   :''
+  }
+  if(checkboxlist.length>0)
+  {
+    const reclamation:Reclamation = new Reclamation()
+    reclamation.transactions=[]
+    //@ts-ignore
+    reclamation.transactions=filtreditemschecked
+    reclamation.userId=this.currentUser.userId
+    console.log(reclamation.transactions)
+    this.recserv.create(reclamation,'').then(
+      (data:any) => {
+        this.token.saved=true;
+        this.loading = false;
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'réclamation créé avec succès! un email vous a été envoyer pour confirmer la création de votre réclamation. vous pouvez désormais modifier/compléter votre réclamation à travers votre tableau de bord',
+          showConfirmButton: false,
+          timer: 6000 
+        });
+        this.router.navigate(['create-reclamation/'+data.data._id])
+      },
+      (error) => {
+        this.loading = false;
+        
+      }
+    )
+  }
+  else{
+    alert('veuillez sélectionner au moins une transaction')
   }
 }
 }

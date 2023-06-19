@@ -65,6 +65,7 @@ import { ViewCompconfsComponent } from './view-compconfs/view-compconfs.componen
 import { ViewWorkgabComponent } from './view-workgab/view-workgab.component';
 import { ViewWorkposComponent } from './view-workpos/view-workpos.component';
 import { ViewWorksmsComponent } from './view-worksms/view-worksms.component';
+import { CreateReclamationComponent } from './create-reclamation/create-reclamation.component';
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -121,6 +122,8 @@ FullCalendarModule.registerPlugins([
     ViewWorkposComponent,
     
     ViewWorksmsComponent,
+    
+    CreateReclamationComponent,
     
     
     
