@@ -104,10 +104,15 @@ onSubmit() {
       reclamation.changements.push(
         //@ts-ignore
         {
+          //@ts-ignore
           commentaire :this.reclamationform.get('commentaire').value,
+                  //@ts-ignore
           statut :this.reclamationform.get('statut').value,
+                  //@ts-ignore
           motif :this.reclamationform.get('motif').value,
+                  //@ts-ignore
           date:data,
+                  //@ts-ignore
           ficheUrl : ''
         }
       )

@@ -71,7 +71,6 @@ onTabClick(event) {
 }
           click1()
           {
-            this.candidaturevalide=true
           }
   }
   
